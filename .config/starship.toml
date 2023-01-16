@@ -1,0 +1,26 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+
+add_newline = true
+[[battery.display]]
+threshold = 20
+style = "bold red"
+
+[git_status]
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+[git_metrics]
+disabled=false
+only_nonzero_diffs = true
+added_style = "bold blue"
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+ 
+[localip]
+ssh_only = true
+format = "@[$localipv4](bold red) "
+disabled = false
+
+[lua]
+symbol = " "
