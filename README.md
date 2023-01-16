@@ -1,14 +1,4 @@
 
-##### How to clone this config
-Recommended way of using this config is by cloning it to the home folder as an bare repo.
-`git clone https://github.com/Pikqi/.dotfiles --bare`
-After that create an alias for that git dir with this command. 
-`alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
-`
-That lets us use the repo with the command  `config`
-To get the files just type
-`config checkout`
-
 #### Some of the apps i use on the daily regardless of the system
 - Neovim - Prefered text editor
 - Tmux - terminal multiplexer when working with more TUI apps and more codebases in the same time.
