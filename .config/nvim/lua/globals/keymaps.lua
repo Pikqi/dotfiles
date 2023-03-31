@@ -18,16 +18,26 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- keymap("n", "<C-m>", "<Nop>", opts)
 -- Normal --
+--
+--
+keymap("n", "x", '"_x', opts)
+keymap("n", "c", '"_c', opts)
+keymap("v", "x", '"_x', opts)
+keymap("v", "c", '"_c', opts)
 -- commenting
 keymap("n", ",", ":CommentToggle<CR>", opts)
+
+-- Marks
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Resize with arrows
+-- Resize with arrows -- Conflicted with mac os
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
@@ -72,8 +82,8 @@ keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Move text up and down MacOS
-keymap("v", "∆", ":m .+1<CR>==", opts)
 keymap("v", "˚", ":m .-2<CR>==", opts)
+keymap("v", "∆", ":m .+1<CR>==", opts)
 
 -- Comment in visual mode
 

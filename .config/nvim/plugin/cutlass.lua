@@ -4,5 +4,5 @@ if not status_ok then
 end
 
 cutlass.setup {
-	cut_key = "m"
+	cut_key = "mm"
 }

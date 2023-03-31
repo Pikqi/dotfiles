@@ -20,6 +20,7 @@ alias nv="nvim ."
 
 alias ta="tmux a || tmux"
 alias tn="tmux new"
+alias tls="tmux ls"
 
 alias sshpi="ssh petar@192.168.23.12"
 
@@ -33,3 +34,6 @@ alias lazyconfig="lazygit -w $HOME --git-dir $HOME/.local/share/yadm/repo.git"
 alias r="ranger"
 alias cl="clear"
 alias bl="bluetuith"
+
+# LS 
+alias l="exa -l"
