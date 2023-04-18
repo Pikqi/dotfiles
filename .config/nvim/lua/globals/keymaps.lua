@@ -24,6 +24,7 @@ vim.g.maplocalleader = " "
 --
 keymap("n", "x", '"_x', opts)
 keymap("n", "c", '"_c', opts)
+keymap("n", "C", '"_C', opts)
 keymap("v", "x", '"_x', opts)
 keymap("v", "c", '"_c', opts)
 -- commenting

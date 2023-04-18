@@ -26,4 +26,24 @@ configs.setup {
 		enable = true,
 		enable_autocmd = false,
 	},
+	rainbow = {
+		enable = false,
+		query = {
+			"rainbow-parens",
+			tsx = "rainbow-tags",
+			javascript = "rainbow-tags-react"
+		},
+		-- strategy = require('ts-rainbow').strategy.global,
+
+		hlgroups = {
+			-- 'TSRainbowRed',
+			'TSRainbowYellow',
+			'TSRainbowBlue',
+			'TSRainbowOrange',
+			'TSRainbowGreen',
+			'TSRainbowViolet',
+			'TSRainbowCyan'
+		},
+
+	}
 }
