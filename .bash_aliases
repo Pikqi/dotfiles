@@ -37,3 +37,13 @@ alias bl="bluetuith"
 
 # LS 
 alias l="exa -l"
+
+# Opens a file in neovim using fzf search, only if fzf returns any value
+fv() {
+  local selected_file
+  selected_file="$(fzf)"
+  if [ -n "$selected_file" ]; then
+    nvim "$selected_file"
+  fi
+}
+
