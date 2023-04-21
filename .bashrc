@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+
+
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -18,6 +21,12 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# Save history after each command
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Share history between bash instances
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -90,7 +99,6 @@ fi
 # some more ls aliases
 alias ll='ls -l'
 alias la='ls -A'
-alias l='ls -CF'
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
