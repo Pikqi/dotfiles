@@ -57,6 +57,12 @@ easypick.setup({
 			previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
 		},
 
+		-- diff current branch with base_branch and show files that changed from main
+		{
+			name = "changed_files_main",
+			command = "git ls-files --others --exclude-standard --full-name | cat && git diff --name-only main",
+			previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
+		},
 		-- list files that have conflicts with diffs in preview
 		{
 			name = "conflicts",

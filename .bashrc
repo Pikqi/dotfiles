@@ -2,9 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-
-
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -13,10 +10,10 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
-shopt -s histappend
+# shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -146,3 +143,7 @@ eval "$(zoxide init bash)"
 
 source $HOME/.config/broot/launcher/bash/br
 export PATH="$(yarn global bin):$PATH"
+
+# Tmuxifier 
+export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"

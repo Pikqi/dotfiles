@@ -62,7 +62,7 @@ local setup = {
 	triggers = "auto",                                                           -- automatically setup triggers
 	-- triggers = {"<leader>"} -- or specify a list manually
 	triggers_blacklist = {
-		-- list of mode / prefixes that should never be hooked by WhichKey
+		-- list of mode / prefixes that should never be hooked by WhichKeywhich
 		-- this is mostly relevant for key maps that start with a native binding
 		-- most people should not need to change this
 		i = { "j", "k" },
@@ -91,6 +91,7 @@ local mappings = {
 	q = { "<cmd>q!<CR>", "Quit" },
 	Q = { "<cmd>qa!<CR>", "Quit all" },
 	c = { "<cmd>bdelete!<CR><cmd>bnext<CR>", "Quit" },
+	C = { "<cmd>%bd|e#|bd#<CR>", "Quit" },
 	f = { "<cmd>Telescope find_files<cr>", "Find Files" },
 	o = { "<cmd>CommentToggle<cr>", "Comment" },
 	-- m = { "<cmd>marks<cr>", "Marks" },
@@ -108,6 +109,7 @@ local mappings = {
 		d = { "<cmd> Telescop diagnostics<cr>", "Find diagnostics" },
 		m = { "<cmd> Telescop marks<cr>", "Find marks" },
 		c = { "<cmd> Easypick changed_files<cr>", "Show all changed files" },
+		C = { "<cmd> Easypick changed_files_main<cr>", "Show all changed files of this branch" },
 	},
 	h = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	t = {

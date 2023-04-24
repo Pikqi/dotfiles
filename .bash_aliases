@@ -22,6 +22,9 @@ alias ta="tmux a || tmux"
 alias tn="tmux new"
 alias tls="tmux ls"
 
+alias tc="tmuxifier load-session client"
+alias tl="tmuxifier load-session launchpad-client"
+
 alias sshpi="ssh petar@192.168.23.12"
 
 alias lg="lazygit"
