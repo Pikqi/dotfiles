@@ -50,3 +50,10 @@ fv() {
   fi
 }
 
+fc() {
+  local selected_file
+  selected_file="$(fzf)"
+  if [ -n "$selected_file" ]; then
+		code "$selected_file"
+  fi
+}

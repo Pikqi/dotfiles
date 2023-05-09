@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["cheatsheet.nvim"] = {
+    loaded = true,
+    path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/cheatsheet.nvim",
+    url = "https://github.com/sudormrfbin/cheatsheet.nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -122,6 +127,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["glance.nvim"] = {
+    loaded = true,
+    path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/glance.nvim",
+    url = "https://github.com/dnlhc/glance.nvim"
   },
   gruvbox = {
     loaded = true,
@@ -198,6 +208,11 @@ _G.packer_plugins = {
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
+  },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
@@ -228,10 +243,27 @@ _G.packer_plugins = {
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/popui.nvim",
     url = "https://github.com/hood/popui.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  pretty_hover = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17pretty_hover\frequire\0" },
+    loaded = true,
+    path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/pretty_hover",
+    url = "https://github.com/Fildo7525/pretty_hover"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["todo-comments.nvim"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0" },
+    loaded = true,
+    path = "/Users/petarobradovic/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,
@@ -261,6 +293,14 @@ time([[Defining packer_plugins]], false)
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
+-- Config for: pretty_hover
+time([[Config for pretty_hover]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17pretty_hover\frequire\0", "config", "pretty_hover")
+time([[Config for pretty_hover]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

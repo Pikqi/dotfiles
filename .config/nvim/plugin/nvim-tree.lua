@@ -134,4 +134,11 @@ nvim_tree.setup({
 		number = true,
 		relativenumber = true,
 	},
+	renderer = {
+		indent_width = 3,
+		indent_markers = {
+			enable = false,
+			inline_arrows = false
+		}
+	}
 })

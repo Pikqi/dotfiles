@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
 	use "HiPhish/nvim-ts-rainbow2"
 	use 'JoosepAlviste/nvim-ts-context-commentstring'
 	use "terrortylor/nvim-comment"
+	use "windwp/nvim-ts-autotag"
 
 	use "jose-elias-alvarez/null-ls.nvim"
 
@@ -87,12 +88,31 @@ return require('packer').startup(function(use)
 	use "rafamadriz/friendly-snippets"
 	use 'norcalli/nvim-colorizer.lua'
 	use "lewis6991/hover.nvim"
+	use {
+		"Fildo7525/pretty_hover",
+		config = function()
+			require("pretty_hover").setup()
+		end
+	}
 	use { 'dsznajder/vscode-es7-javascript-react-snippets',
 		run = 'yarn install --frozen-lockfile && yarn compile'
 	}
 	use { 'saadparwaiz1/cmp_luasnip' }
 
-	-- Lua
+	use 'dnlhc/glance.nvim'
+
+	use {
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			}
+		end
+	}
+
 	use {
 		"folke/zen-mode.nvim",
 		config = function()
@@ -107,6 +127,15 @@ return require('packer').startup(function(use)
 
 	-- use 'rcarriga/nvim-notify'
 	--
+	use {
+		'sudormrfbin/cheatsheet.nvim',
+
+		requires = {
+			{ 'nvim-telescope/telescope.nvim' },
+			{ 'nvim-lua/popup.nvim' },
+			{ 'nvim-lua/plenary.nvim' },
+		}
+	}
 
 	-- -- use 'github/copilot.vim'
 	use {

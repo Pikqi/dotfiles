@@ -57,7 +57,7 @@ lspconfig.tsserver.setup {
 	on_attach = on_attach,
 	--filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 	cmd = { "typescript-language-server", "--stdio" },
-	capabilities = capabilities
+	capabilities = capabilities,
 }
 
 -- lspconfig.eslint.setup {
@@ -105,8 +105,6 @@ null_ls.setup {
 		-- null_ls.builtins.code_actions.eslint,
 		-- null_ls.builtins.formatting.eslint,
 		-- null_ls.builtins.diagnostics.eslint,
-
-
 	},
 
 	on_attach

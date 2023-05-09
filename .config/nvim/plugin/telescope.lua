@@ -27,7 +27,7 @@ telescope.setup({
 			hidden = true,
 			find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
 		},
-	},
+	}
 })
 
 local easypick = require("easypick")
