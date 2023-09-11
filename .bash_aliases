@@ -19,7 +19,7 @@ alias vim='nvim'
 alias nv="nvim ."
 
 alias ta="tmux a || tmux"
-alias tn="tmux new"
+# alias tn="tmux new"
 alias tls="tmux ls"
 
 alias tc="tmuxifier load-session client"
@@ -40,6 +40,7 @@ alias bl="bluetuith"
 
 # LS 
 alias l="exa -l"
+alias la="exa -la"
 
 # Opens a file in neovim using fzf search, only if fzf returns any value
 fv() {
@@ -56,4 +57,9 @@ fc() {
   if [ -n "$selected_file" ]; then
 		code "$selected_file"
   fi
+}
+
+tn (){
+	session_name=$(basename "$PWD")
+	tmux new-session -s "$session_name"
 }
