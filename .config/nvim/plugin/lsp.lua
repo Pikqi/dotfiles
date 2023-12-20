@@ -25,7 +25,10 @@ lspconfig.tailwindcss.setup {
 	settings = {
 		tailwindCSS = {
 			experimental = {
-				classRegex = { "[twMerge,twJoin]\\([^]([^)]*).\\)", "[Cc]lass[Nn]ames \\=([^;]*);" }
+				-- classRegex = { "[twMerge,twJoin]\\([^]([^)]*).\\)", "[Cc]lass[Nn]ames \\=([^;]*);" }
+				classRegex = {
+					{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" }
+				}
 			}
 		}
 	},
@@ -40,10 +43,8 @@ lspconfig.rust_analyzer.setup {
 lspconfig.cssls.setup {
 	capabilities = capabilities,
 }
-
-lspconfig.emmet_ls.setup {
+lspconfig.yamlls.setup {
 	capabilities = capabilities,
-	filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
 }
 
 lspconfig.cssmodules_ls.setup {
@@ -64,10 +65,13 @@ lspconfig.tsserver.setup {
 -- 	on_attach = on_attach
 -- }
 
-
-lspconfig.pyright.setup {
+lspconfig.pylsp.setup {
 	on_attach = on_attach
 }
+
+-- lspconfig.pyright.setup {
+-- 	on_attach = on_attach
+-- }
 
 lspconfig.lua_ls.setup {
 	on_attach = on_attach,
@@ -87,6 +91,24 @@ lspconfig.clangd.setup {
 	on_attach = on_attach
 }
 
+lspconfig.solc.setup {
+	on_attach = on_attach
+}
+
+lspconfig.solc.setup {
+	on_attach = on_attach
+}
+
+lspconfig.jsonls.setup {
+	settings = {
+		json = {
+			schemas = require('schemastore').json.schemas(),
+			validate = { enable = true },
+		},
+	},
+	capabilities = capabilities,
+}
+
 local status_ok, null_ls = pcall(require, "null-ls")
 if not status_ok then
 	return
@@ -94,17 +116,17 @@ end
 
 null_ls.setup {
 	sources = {
-		-- null_ls.builtins.formatting.prettierd,
-		null_ls.builtins.formatting.eslint_d,
-		null_ls.builtins.diagnostics.eslint_d,
-		null_ls.builtins.code_actions.eslint_d
+		-- null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.prettierd,
 
 		-- null_ls.builtins.formatting.stylelint,
 		-- null_ls.builtins.diagnostics.stylelint,
 		--
 		-- null_ls.builtins.code_actions.eslint,
-		-- null_ls.builtins.formatting.eslint,
 		-- null_ls.builtins.diagnostics.eslint,
+
+		null_ls.builtins.diagnostics.eslint_d,
+		null_ls.builtins.code_actions.eslint_d
 	},
 
 	on_attach

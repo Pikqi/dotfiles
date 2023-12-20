@@ -3,6 +3,7 @@ if not status_ok then
 	return
 end
 
+
 -- default options from ghub
 local setup = {
 	plugins = {
@@ -37,7 +38,7 @@ local setup = {
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 		separator = "➜", -- symbol used between a key and it's label
-		group = "+",    -- symbol prepended to a group
+		group = "+", -- symbol prepended to a group
 	},
 	popup_mappings = {
 		scroll_down = '<c-d>', -- binding to scroll down inside the popup
@@ -56,7 +57,7 @@ local setup = {
 		spacing = 3,                                                               -- spacing between columns
 		align = "left",                                                            -- align columns left, center or right
 	},
-	ignore_missing = false,                                                      -- enable this to hide mappings for which you didn't specify a label
+	ignore_missing = true,                                                       -- enable this to hide mappings for which you didn't specify a label
 	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
 	show_help = true,                                                            -- show help message on the command line when the popup is visible
 	triggers = "auto",                                                           -- automatically setup triggers
@@ -83,19 +84,21 @@ local opts = {
 }
 
 local mappings = {
-	["<tab>"] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
 	e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	r = { "<cmd>NvimTreeFindFile<cr>", "Open folder" },
 	w = { "<cmd>w!<CR>", "Save" },
 	W = { "<cmd>noa w<CR>", "Save without formatting" },
 	q = { "<cmd>q!<CR>", "Quit" },
 	Q = { "<cmd>qa!<CR>", "Quit all" },
-	c = { "<cmd>bdelete!<CR><cmd>bnext<CR>", "Quit" },
-	C = { "<cmd>%bd|e#|bd#<CR>", "Quit" },
+	c = { "<cmd>bdelete!<CR><cmd>bnext<CR>", "Close Buff" },
+	C = { "<cmd>%bd|e#|bd#<CR>", "Close all other Buffers" },
 	f = { "<cmd>Telescope find_files<cr>", "Find Files" },
 	o = { "<cmd>CommentToggle<cr>", "Comment" },
 	h = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	k = { "<cmd>lua require('pretty_hover').hover()<cr>", "Show info" },
+	-- K = { "<cmd>lua require('hover').hover()<cr>", "Show info" },
+	R = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+	M = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
 	-- k = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info" },
 	-- k = { "<cmd> lua  require('hover').hover() <cr> ", "Show info" },
 	-- m = { "<cmd>marks<cr>", "Marks" },
@@ -114,6 +117,7 @@ local mappings = {
 		m = { "<cmd> Telescop marks<cr>", "Find marks" },
 		c = { "<cmd> Easypick changed_files<cr>", "Show all changed files" },
 		C = { "<cmd> Easypick changed_files_main<cr>", "Show all changed files of this branch" },
+		h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 	},
 	t = {
 		name = "Toggle",
@@ -121,13 +125,9 @@ local mappings = {
 		h = { "<cmd>TSToggle highlight<CR>", "TS highlight" },
 		i = { "<cmd>IndentBlanklineToggle!<CR>", "TS indent" },
 		r = { "<cmd>TSToggle rainbow<CR>", "TS rainbow" },
+		w = { "<cmd>:set wrap! linebreak!<cr><cr>", "Wrap text" },
+		b = { "<cmd>set list!<CR>", "Show whitespace" },
 	},
-	-- t = {
-	--   name = "Toggle Term",
-	--   f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-	--   h = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "Horizontal" },
-	--   v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-	-- },
 	g = {
 		name = "Git",
 		k = { "<cmd>:Gitsigns prev_hunk<cr>", "Previous hunk" },
@@ -139,6 +139,8 @@ local mappings = {
 		x = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		d = { "<cmd>:Gitsigns diffthis<cr>", "Diff" },
 		R = { "<cmd>:Gitsigns reset_hunk<cr>", "reset_hunk" },
+		l = { "<cmd>:Gitsigns toggle_linehl<cr>", "show lines" },
+		w = { "<cmd>:Gitsigns toggle_word_diff<cr>", "word diff" },
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 	},
 	l = {

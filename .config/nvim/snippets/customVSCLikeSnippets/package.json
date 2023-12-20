@@ -1,0 +1,18 @@
+{
+    "name": "customVSCLikeSnippets",
+    "engines": {
+        "vscode": "^1.11.0"
+    },
+    "contributes": {
+        "snippets": [
+            {
+                "language": ["javascriptreact", "typescriptreact"],
+                "path": "./customReactSnippets.json"
+            },
+            {
+                "language": ["typescript", "typescriptreact"],
+                "path": "./typesript.json"
+            }
+        ]
+    }
+}

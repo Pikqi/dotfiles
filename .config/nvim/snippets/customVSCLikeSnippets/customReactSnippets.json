@@ -1,0 +1,82 @@
+{
+  "reactArrowFunctionPageSection": {
+    "prefix": "rafps",
+    "body": [
+      "import React from \"react\";",
+      "import { PageSection } from \"@components/atoms\";",
+      "import { cx } from \"src/utils\";",
+      "",
+      "const ${1:${TM_FILENAME_BASE}}: React.FC<{ className?: string }> = ({ className }) => {",
+      "  return (",
+      "    <PageSection className={cx('', className)}>${1:first}</PageSection>",
+      "  )",
+      "}",
+      "",
+      "export { ${1:${TM_FILENAME_BASE}} };"
+    ],
+    "description": "Creates a React Arrow Function Component with PageSection and classNames prop"
+  },
+  "reactArrowFunctionCxClassNames": {
+    "prefix": "rafcx",
+    "body": [
+      "import React from \"react\";",
+      "import { cx } from \"src/utils\";",
+      "",
+      "const ${1:${TM_FILENAME_BASE}}: React.FC<{ className?: string }> = ({ className }) => {",
+      "  return (",
+      "    <div className={cx(\" \", className)}>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export { ${1:${TM_FILENAME_BASE}} };"
+    ],
+    "description": "Creates a React Arrow Function Component with PageSection and classNames prop"
+  },
+  "reactArrowFunctionProps": {
+    "prefix": "rafp",
+    "body": [
+      "import React from \"react\";",
+      "",
+      "const ${1:${TM_FILENAME_BASE}}: React.FC<{  }> = ({ }) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export { ${1:${TM_FILENAME_BASE}} };"
+    ],
+    "description": "Creates a React Arrow Function Component with React.FC props"
+  },
+  "useModalManagerSnippet": {
+    "prefix": "useModalManagerSnippet",
+    "body": [
+			"const { modalManager } = useModalManager$1();"
+          ],
+    "description": "Destruct modalManager"
+  },
+  "ButtonSnippet": {
+    "prefix": "buttonSnippet",
+    "body": [
+			"<Button>",
+					"<Button.Text>$1</Button.Text>",
+				"</Button>"
+          ],
+    "description": "Compose a button with text"
+  },
+	"useStateSnippet":{
+  "prefix": "us",
+  "body": [
+    "const [$1, set${1/(.)/${1:/upcase}/}] = useState($2);",
+    "$3"
+   ],
+  "description": "creates use state"
+		},
+
+	"useTranslationSnippet":{
+  "prefix": "ut",
+  "body": [
+    "const { t } = useTranslation$1([\"$2\"]);"
+   ],
+  "description": "Gets t for translations"
+		}
+}

@@ -1,0 +1,24 @@
+{
+
+  "exportNamedFrom": {
+    "prefix": "expn",
+    "body": [
+			"export { $2 } from \"./$1\";"
+          ],
+    "description": "Export named from file"
+  },
+  "exportEverythingFrom": {
+    "prefix": "expa",
+    "body": [
+			"export * from \"./$1\";"
+          ],
+    "description": "Export everything from file"
+  },
+ "consoleLog": {
+    "prefix": "log",
+    "body": [
+			"console.log($1);"
+          ],
+    "description": "console log"
+  }
+}

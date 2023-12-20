@@ -14,7 +14,6 @@
 --
 -- Please see https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach for assistance in migrating.
 --
-
 local function on_attach(bufnr)
 	local api = require('nvim-tree.api')
 
@@ -96,19 +95,7 @@ end
 
 
 
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-	return
-end
-
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-	return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
-nvim_tree.setup({
+require("nvim-tree").setup({
 	on_attach = on_attach,
 	hijack_cursor = true,
 	select_prompts = true,
@@ -117,7 +104,7 @@ nvim_tree.setup({
 			max = 70
 		},
 		-- height = 30,
-		hide_root_folder = false,
+		-- hide_root_folder = false,
 		side = "left",
 		-- Mappings map deprecated use on_attach
 		-- mappings = {

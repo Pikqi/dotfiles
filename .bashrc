@@ -147,3 +147,6 @@ export PATH="$(yarn global bin):$PATH"
 # Tmuxifier 
 export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

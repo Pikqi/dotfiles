@@ -27,12 +27,22 @@ telescope.setup({
 			hidden = true,
 			find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
 		},
+	},
+	extensions = {
+		undo = {
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.8,
+			},
+		},
 	}
 })
 
+telescope.load_extension("undo");
+
 local easypick = require("easypick")
 
--- only required for the example to work
 local base_branch = "main"
 
 easypick.setup({

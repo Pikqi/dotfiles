@@ -116,7 +116,7 @@ cmp.setup {
 		end,
 	},
 	sources = {
-		{ name = "copilot" },
+		-- { name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
@@ -130,7 +130,6 @@ cmp.setup {
 	--    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	--  },
 	window = {
-
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},

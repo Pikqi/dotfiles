@@ -1,15 +1,17 @@
+local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+	return
+end
+
+
 require("nvim_comment").setup({
 	hook = function()
 		require("ts_context_commentstring.internal").update_commentstring()
 	end,
 })
 
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
-	return
-end
-
 configs.setup {
+	ensure_installed = { "tsx", "lua", "typescript" },
 	sync_install = false,   -- install languages synchronously (only applied to `ensure_installed`)
 	auto_install = true,
 	ignore_install = { "" }, -- List of parsers to ignore installing
