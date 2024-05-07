@@ -20,8 +20,11 @@ return require('packer').startup(function(use)
 	-- manages it self
 	use 'wbthomason/packer.nvim'
 
+
 	-- coloscheme
-	use { 'gruvbox-community/gruvbox', commit = '2b5b1f7' }
+	use { "folke/tokyonight.nvim" }
+	use { 'gruvbox-community/gruvbox' }
+	-- use { 'gruvbox-community/gruvbox', commit = '2b5b1f7' }
 	-- use 'morhetz/gruvbox'
 	-- use "ellisonleao/gruvbox.nvim"
 	-- use "sainnhe/gruvbox-material"
@@ -38,7 +41,7 @@ return require('packer').startup(function(use)
 
 	-- Telescope a fuzzy searcher
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		'nvim-telescope/telescope.nvim', tag = '0.1.5',
 		-- or                            , branch = '0.1.x',
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	}
@@ -119,6 +122,11 @@ return require('packer').startup(function(use)
 		setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
 		ft = { "markdown" },
 	})
+
+	-- use {
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- }
 
 	use {
 		"folke/zen-mode.nvim",

@@ -31,3 +31,4 @@ end
 vim.api.nvim_set_keymap('n', '<leader>u', [[:lua TelescopeRipgrepInSelectedFolder()<CR>]],
 	{ noremap = true, silent = true })
 vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[colorscheme tokyonight-storm]]

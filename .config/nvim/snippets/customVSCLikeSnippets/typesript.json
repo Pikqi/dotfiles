@@ -20,5 +20,13 @@
 			"console.log($1);"
           ],
     "description": "console log"
+  },
+	"importNamedFrom": {
+    "prefix": "imp",
+    "body": [
+			"import { $2 } from \"$1\";"
+          ],
+    "description": "Import from"
   }
+
 }

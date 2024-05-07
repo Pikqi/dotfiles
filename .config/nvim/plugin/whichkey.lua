@@ -118,6 +118,8 @@ local mappings = {
 		c = { "<cmd> Easypick changed_files<cr>", "Show all changed files" },
 		C = { "<cmd> Easypick changed_files_main<cr>", "Show all changed files of this branch" },
 		h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+		s = { "<cmd>Telescope resume<cr>", "Resume last query" },
+
 	},
 	t = {
 		name = "Toggle",
@@ -135,6 +137,7 @@ local mappings = {
 		b = { "<cmd>:Gitsigns blame_line<cr>", "Show blame" },
 		p = { "<cmd>:Gitsigns preview_hunk<cr>", "Preview hunk" },
 		s = { "<cmd>:Gitsigns stage_buffer<cr>", "Stage file" },
+		H = { "<cmd>:Gitsigns stage_hunk<cr>", "Stage hunk" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		x = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		d = { "<cmd>:Gitsigns diffthis<cr>", "Diff" },

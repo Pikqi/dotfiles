@@ -1,5 +1,5 @@
-local telescope = require("telescope")
 local telescopeConfig = require("telescope.config")
+local telescope = require("telescope")
 
 -- Clone the default Telescope configuration
 local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
@@ -15,6 +15,9 @@ table.insert(vimgrep_arguments, "!.yarn/*")
 
 table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!*.lock")
+
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!pnpm-lock.yaml")
 
 telescope.setup({
 	defaults = {
@@ -72,6 +75,12 @@ easypick.setup({
 			name = "changed_files_main",
 			command = "git ls-files --others --exclude-standard --full-name | cat && git diff --name-only main",
 			previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
+		},
+		-- diff current branch with base_branch and show files that changed from main
+		{
+			name = "changed_files_develop",
+			command = "git ls-files --others --exclude-standard --full-name | cat && git diff --name-only develop",
+			previewer = easypick.previewers.branch_diff({ base_branch = "develop" })
 		},
 		-- list files that have conflicts with diffs in preview
 		{
