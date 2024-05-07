@@ -150,3 +150,11 @@ eval "$(tmuxifier init -)"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PNPM_HOME="/Users/petarobradovic/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+export PATH="$PATH:/Users/petarobradovic/.foundry/bin"

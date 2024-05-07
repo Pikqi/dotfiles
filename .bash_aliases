@@ -25,7 +25,7 @@ alias tls="tmux ls"
 alias tc="tmuxifier load-session client"
 alias tl="tmuxifier load-session launchpad-client"
 
-alias sshpi="ssh petar@192.168.23.12"
+alias ssh!="ssh home"
 
 alias lg="lazygit"
 alias lazyconfig="lazygit -w $HOME --git-dir $HOME/.local/share/yadm/repo.git"
@@ -41,6 +41,9 @@ alias bl="bluetuith"
 # LS 
 alias l="exa -l"
 alias la="exa -la"
+
+alias p="pnpm"
+alias gcci="git commit --allow-empty -m \"trigger ci/cd\""
 
 # Opens a file in neovim using fzf search, only if fzf returns any value
 fv() {
