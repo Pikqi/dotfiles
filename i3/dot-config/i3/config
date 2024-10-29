@@ -327,7 +327,7 @@ exec --no-startup-id gajim
 
 
 # Wallpaper
-exec_always feh --bg-fill /usr/share/backgrounds/glowing_lake.jpg
+exec_always feh --bg-fill ~/Pictures/wallpaper.jpg
 
 
 # PacketTracer floating
