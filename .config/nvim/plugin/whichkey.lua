@@ -3,169 +3,412 @@ if not status_ok then
 	return
 end
 
-
--- default options from ghub
 local setup = {
-	plugins = {
-		marks = true,    -- shows a list of your marks on ' and `
-		registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-		spelling = {
-			enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-			suggestions = 20, -- how many suggestions should be shown in the list?
+
+	---@type wk.Win.opts
+	win = {
+		-- width = 1,
+		-- height = { min = 4, max = 25 },
+		-- col = 0,
+		-- row = math.huge,
+		border = "rounded",
+		padding = { 2, 2, 2, 2 }, -- extra window padding [top/bottom, right/left]
+		title = true,
+		title_pos = "center",
+		zindex = 1000,
+		-- Additional vim.wo and vim.bo options
+		bo = {},
+		wo = {
+			winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
 		},
-		-- the presets plugin, adds help for a bunch of default keybindings in Neovim
-		-- No actual key bindings are created
-		presets = {
-			operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-			motions = true,   -- adds help for motions
-			text_objects = true, -- help for text objects triggered after entering an operator
-			windows = true,   -- default bindings on <c-w>
-			nav = true,       -- misc bindings to work with windows
-			z = true,         -- bindings for folds, spelling and others prefixed with z
-			g = true,         -- bindings for prefixed with g
-		},
-	},
-	-- add operators that will trigger motion and text object completion
-	-- to enable all native operators, set the preset / operators plugin above
-	operators = { gc = "Comments" },
-	key_labels = {
-		-- override the label used to display some keys. It doesn't effect WK in any other way.
-		-- For example:
-		-- ["<space>"] = "SPC",
-		-- ["<cr>"] = "RET",
-		-- ["<tab>"] = "TAB",
-	},
-	icons = {
-		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-		separator = "➜", -- symbol used between a key and it's label
-		group = "+", -- symbol prepended to a group
-	},
-	popup_mappings = {
-		scroll_down = '<c-d>', -- binding to scroll down inside the popup
-		scroll_up = '<c-u>', -- binding to scroll up inside the popup
-	},
-	window = {
-		border = "rounded",     -- none, single, double, shadow
-		position = "bottom",    -- bottom, top
-		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0
-	},
-	layout = {
-		height = { min = 4, max = 25 },                                            -- min and max height of the columns
-		width = { min = 20, max = 50 },                                            -- min and max width of the columns
-		spacing = 3,                                                               -- spacing between columns
-		align = "left",                                                            -- align columns left, center or right
-	},
-	ignore_missing = true,                                                       -- enable this to hide mappings for which you didn't specify a label
-	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-	show_help = true,                                                            -- show help message on the command line when the popup is visible
-	triggers = "auto",                                                           -- automatically setup triggers
-	-- triggers = {"<leader>"} -- or specify a list manually
-	triggers_blacklist = {
-		-- list of mode / prefixes that should never be hooked by WhichKeywhich
-		-- this is mostly relevant for key maps that start with a native binding
-		-- most people should not need to change this
-		i = { "j", "k" },
-		v = { "j", "k" },
 	},
 }
-
--- options
-local opts = {
-	mode = "n", -- NORMAL mode
-	-- prefix: use "<leader>f" for example for mapping everything related to finding files
-	-- the prefix is prepended to every mapping part of `mappings`
-	prefix = "<leader>",
-	buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = false, -- use `nowait` when creating keymaps
-}
-
 local mappings = {
-	e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	r = { "<cmd>NvimTreeFindFile<cr>", "Open folder" },
-	w = { "<cmd>w!<CR>", "Save" },
-	W = { "<cmd>noa w<CR>", "Save without formatting" },
-	q = { "<cmd>q!<CR>", "Quit" },
-	Q = { "<cmd>qa!<CR>", "Quit all" },
-	c = { "<cmd>bdelete!<CR><cmd>bnext<CR>", "Close Buff" },
-	C = { "<cmd>%bd|e#|bd#<CR>", "Close all other Buffers" },
-	f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-	o = { "<cmd>CommentToggle<cr>", "Comment" },
-	h = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	k = { "<cmd>lua require('pretty_hover').hover()<cr>", "Show info" },
-	-- K = { "<cmd>lua require('hover').hover()<cr>", "Show info" },
-	R = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
-	M = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
-	-- k = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show info" },
-	-- k = { "<cmd> lua  require('hover').hover() <cr> ", "Show info" },
-	-- m = { "<cmd>marks<cr>", "Marks" },
-	s = {
-		name = "Search",
-		["b"] = {
-			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-			"Buffers",
-		},
-		--c = { "<cmd>lua require'telescope.builtin'.commands{}<cr>", "Find Commands"},
-		C = { "<cmd> Telescop commands<cr>", "Find Commands" },
-		k = { "<cmd> Telescop keymaps<cr>", "Find keymaps" },
-		g = { "<cmd> Telescop live_grep<cr>", "live grep" },
-		r = { "<cmd> Telescop lsp_references<cr>", "Find all refrences" },
-		d = { "<cmd> Telescop diagnostics<cr>", "Find diagnostics" },
-		m = { "<cmd> Telescop marks<cr>", "Find marks" },
-		c = { "<cmd> Easypick changed_files<cr>", "Show all changed files" },
-		C = { "<cmd> Easypick changed_files_main<cr>", "Show all changed files of this branch" },
-		h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-		s = { "<cmd>Telescope resume<cr>", "Resume last query" },
-
+	{
+		"<leader>C",
+		"<cmd>%bd|e#|bd#<CR>",
+		desc = "Close all other Buffers",
+		nowait = false,
+		remap = false,
 	},
-	t = {
-		name = "Toggle",
-		z = { "<cmd>ZenMode<CR>", "Zen mode" },
-		h = { "<cmd>TSToggle highlight<CR>", "TS highlight" },
-		i = { "<cmd>IndentBlanklineToggle!<CR>", "TS indent" },
-		r = { "<cmd>TSToggle rainbow<CR>", "TS rainbow" },
-		w = { "<cmd>:set wrap! linebreak!<cr><cr>", "Wrap text" },
-		b = { "<cmd>set list!<CR>", "Show whitespace" },
+	{ "<leader>M", "<cmd>MarkdownPreview<cr>", desc = "Markdown Preview", nowait = false, remap = false },
+	{ "<leader>Q", "<cmd>qa!<CR>", desc = "Quit all", nowait = false, remap = false },
+	{ "<leader>R", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files", nowait = false, remap = false },
+	{
+		"<leader>W",
+		"<cmd>noa w<CR>",
+		desc = "Save without formatting",
+		nowait = false,
+		remap = false,
 	},
-	g = {
-		name = "Git",
-		k = { "<cmd>:Gitsigns prev_hunk<cr>", "Previous hunk" },
-		j = { "<cmd>:Gitsigns next_hunk<cr>", "Next hunk" },
-		b = { "<cmd>:Gitsigns blame_line<cr>", "Show blame" },
-		p = { "<cmd>:Gitsigns preview_hunk<cr>", "Preview hunk" },
-		s = { "<cmd>:Gitsigns stage_buffer<cr>", "Stage file" },
-		H = { "<cmd>:Gitsigns stage_hunk<cr>", "Stage hunk" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		x = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		d = { "<cmd>:Gitsigns diffthis<cr>", "Diff" },
-		R = { "<cmd>:Gitsigns reset_hunk<cr>", "reset_hunk" },
-		l = { "<cmd>:Gitsigns toggle_linehl<cr>", "show lines" },
-		w = { "<cmd>:Gitsigns toggle_word_diff<cr>", "word diff" },
-		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+	{
+		"<leader>c",
+		"<cmd>bdelete!<CR><cmd>bnext<CR>",
+		desc = "Close Buff",
+		nowait = false,
+		remap = false,
 	},
-	l = {
-		name = "LSP",
-		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		R = { "<cmd>Glance references<cr>", "References" },
-		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration" },
-		d = { "<cmd>Glance definitions<cr>", "Definition" },
-		i = { "<cmd>Glance implementations<cr>", "Implementation" },
-		-- R = { "<cmd>lua vim.lsp.buf.references()<cr>", "Refrences" },
-		-- D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration" },
-		-- d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Definition" },
-		-- i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation" },
+	{
+		"<leader>d",
+		group = "Diagnostics",
+		nowait = false,
+		remap = false,
 	},
-	d = {
-		name = "Diagnostics",
-		k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev" },
-		j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next" },
-		h = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Open float" },
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code actions" },
+	{
+		"<leader>da",
+		"<cmd>lua vim.lsp.buf.code_action()<cr>",
+		desc = "Code actions",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>dh",
+		"<cmd>lua vim.diagnostic.open_float()<cr>",
+		desc = "Open float",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>dj",
+		"<cmd>lua vim.diagnostic.goto_next()<cr>",
+		desc = "Next",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>dk",
+		"<cmd>lua vim.diagnostic.goto_prev()<cr>",
+		desc = "Prev",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>e",
+		"<cmd>NvimTreeToggle<cr>",
+		desc = "Explorer",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>f",
+		"<cmd>Telescope find_files<cr>",
+		desc = "Find Files",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>g",
+		group = "Git",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gH",
+		"<cmd>:Gitsigns stage_hunk<cr>",
+		desc = "Stage hunk",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gR",
+		"<cmd>:Gitsigns reset_hunk<cr>",
+		desc = "reset_hunk",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gb",
+		"<cmd>:Gitsigns blame_line<cr>",
+		desc = "Show blame",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gc",
+		"<cmd>Telescope git_commits<cr>",
+		desc = "Checkout commit",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gd",
+		"<cmd>:Gitsigns diffthis<cr>",
+		desc = "Diff",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gg",
+		"<cmd>lua _LAZYGIT_TOGGLE()<CR>",
+		desc = "Lazygit",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gj",
+		"<cmd>:Gitsigns next_hunk<cr>",
+		desc = "Next hunk",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gk",
+		"<cmd>:Gitsigns prev_hunk<cr>",
+		desc = "Previous hunk",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gl",
+		"<cmd>:Gitsigns toggle_linehl<cr>",
+		desc = "show lines",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gp",
+		"<cmd>:Gitsigns preview_hunk<cr>",
+		desc = "Preview hunk",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gs",
+		"<cmd>:Gitsigns stage_buffer<cr>",
+		desc = "Stage file",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gw",
+		"<cmd>:Gitsigns toggle_word_diff<cr>",
+		desc = "word diff",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>gx",
+		"<cmd>Telescope git_branches<cr>",
+		desc = "Checkout branch",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>h",
+		"<cmd>nohlsearch<CR>",
+		desc = "No Highlight",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>k",
+		"<cmd>lua require('pretty_hover').hover()<cr>",
+		desc = "Show info",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>l",
+		group = "LSP",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>lD",
+		"<cmd>lua vim.lsp.buf.declaration()<cr>",
+		desc = "Declaration",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>lR",
+		"<cmd>Glance references<cr>",
+		desc = "References",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>ld",
+		"<cmd>Glance definitions<cr>",
+		desc = "Definition",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>li",
+		"<cmd>Glance implementations<cr>",
+		desc = "Implementation",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>lr",
+		"<cmd>lua vim.lsp.buf.rename()<cr>",
+		desc = "Rename",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>o",
+		"<cmd>CommentToggle<cr>",
+		desc = "Comment",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>q",
+		"<cmd>q!<CR>",
+		desc = "Quit",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>r",
+		"<cmd>NvimTreeFindFile<cr>",
+		desc = "Open folder",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>s",
+		group = "Search",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sC",
+		"<cmd> Easypick changed_files_main<cr>",
+		desc = "Show all changed files of this branch",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sb",
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		desc = "Buffers",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sc",
+		"<cmd> Easypick changed_files<cr>",
+		desc = "Show all changed files",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sd",
+		"<cmd> Telescop diagnostics<cr>",
+		desc = "Find diagnostics",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sg",
+		"<cmd> Telescop live_grep<cr>",
+		desc = "live grep",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sh",
+		"<cmd>Telescope help_tags<cr>",
+		desc = "Help tags",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sk",
+		"<cmd> Telescop keymaps<cr>",
+		desc = "Find keymaps",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sm",
+		"<cmd> Telescop marks<cr>",
+		desc = "Find marks",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>sr",
+		"<cmd> Telescop lsp_references<cr>",
+		desc = "Find all refrences",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>ss",
+		"<cmd>Telescope resume<cr>",
+		desc = "Resume last query",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>t",
+		group = "Toggle",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>tb",
+		"<cmd>set list!<CR>",
+		desc = "Show whitespace",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>tg",
+		desc = "<cmd> Gitsigns toggle_current_line_blame<CR>",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>th",
+		"<cmd>TSToggle highlight<CR>",
+		desc = "TS highlight",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>ti",
+		"<cmd>IndentBlanklineToggle!<CR>",
+		desc = "TS indent",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>tr",
+		"<cmd>TSToggle rainbow<CR>",
+		desc = "TS rainbow",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>tw",
+		"<cmd>:set wrap! linebreak!<cr><cr>",
+		desc = "Wrap text",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>tz",
+		"<cmd>ZenMode<CR>",
+		desc = "Zen mode",
+		nowait = false,
+		remap = false,
+	},
+	{
+		"<leader>w",
+		"<cmd>w!<CR>",
+		desc = "Save",
+		nowait = false,
+		remap = false,
 	},
 }
 
 wk.setup(setup)
-wk.register(mappings, opts)
+-- wk.setup()
+-- wk.register(mappings, opts)
+wk.add(mappings)

@@ -150,6 +150,7 @@ eval "$(tmuxifier init -)"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export BROWSER="/usr/bin/librewolf"
 
 export PNPM_HOME="/Users/petarobradovic/Library/pnpm"
 case ":$PATH:" in
@@ -158,3 +159,4 @@ case ":$PATH:" in
 esac
 
 export PATH="$PATH:/Users/petarobradovic/.foundry/bin"
+export PATH="$PATH:/home/petar/.platformio/penv/bin"

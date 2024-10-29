@@ -9,7 +9,10 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# super as mod
 set $mod Mod4
+# alt as secondary mod
+set $sec Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -32,14 +35,6 @@ exec --no-startup-id dex --autostart --environment i3
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
-# set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-# Use Mouse+$mod to drag floating windows to their wanted position
-
 floating_modifier $mod
 
 exec --no-startup-id libinput-gestures-setup start
@@ -55,16 +50,18 @@ bindsym $mod+q kill
 # bindsym $mod+BackSpace exec --no-startup-id dmenu_run
 
 # A more modern dmenu replacement is rofi:
-bindsym $mod+BackSpace exec "rofi -modi drun,run -show drun"
-# bindsym $mod+BackSpace exec "rofi -show run"
+# bindsym $mod+BackSpace exec "rofi -modi drun,run -show drun"
+bindsym $mod+BackSpace exec "rofi -show run"
+bindsym $mod+space exec "rofi -show window"
+bindsym $sec+space exec "rofi -show run"
+
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # Applications
-bindsym $mod+o exec /usr/bin/microsoft-edge-stable
-bindsym $mod+p exec /usr/bin/microsoft-edge-dev
-bindsym $mod+n exec /usr/bin/notion-app
+bindsym $mod+p exec /usr/bin/librewolf
+bindsym $mod+o exec /usr/bin/obsidian
 
 # Autorandr
 bindsym $mod+Shift+comma exec autorandr mobile
@@ -112,7 +109,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+d floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -126,7 +123,8 @@ bindsym $mod+a focus parent
 exec --no-startup-id betterlockscreen -w dim
 
 # Alternative (set last used background)
-exec --no-startup-id source ~/.fehbg
+# exec --no-startup-id source ~/.fehbg
+
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -166,18 +164,18 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Workspaces on different monitors
-workspace $ws1 output eDP1
-workspace $ws2 output eDP1
-workspace $ws3 output eDP1
-workspace $ws4 output eDP1
-workspace $ws5 output eDP1
+workspace $ws1 output eDP-1
+workspace $ws2 output eDP-1
+workspace $ws3 output eDP-1
+workspace $ws4 output eDP-1
+workspace $ws5 output eDP-1
 
 
-workspace $ws6 output HDMI1
-workspace $ws7 output HDMI1
-workspace $ws8 output HDMI1
-workspace $ws9 output HDMI1
-workspace $ws10 output HDMI1
+workspace $ws6 output HDMI-2
+workspace $ws7 output HDMI-2
+workspace $ws8 output HDMI-2
+workspace $ws9 output HDMI-2
+workspace $ws10 output HDMI-2
 
 # Scroll workspaces with mod + scroll
 bindsym --whole-window --border $mod+button4 workspace prev
@@ -222,11 +220,14 @@ for_window [class="^.*"] border pixel 1
 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+bindsym XF86MonBrightnessUp exec "brightnessctl set +10%; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "brightnessctl set 10%-; notify-send 'brightness down'"
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -234,8 +235,6 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Wallpaper
-exec_always feh --bg-fill ~/Pictures/wallpaper.jpg
 
 # Transparency and blur
 exec --no-startup-id picom -CGb
@@ -247,10 +246,18 @@ bar {
 }
 # Review the lines below and append to ~/.config/i3/config
 
+# pulseaudio-utils settings
+#
+# Symbolic name for sink (numeric index not supported)
+#   Recommended: comment out this setting and omit the -s option to use default sink
+#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
+#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
+
+
 ## Volume control
 
 # Path to volume control, without trailing slash
-set $volumepath ~/.config/i3/i3-volume
+set $volumepath ~/i3-volume
 
 # Command for the status line
 #   ie: i3blocks, i3status
@@ -264,14 +271,68 @@ set $statussig SIGUSR1
 # Amount to increase/decrease volume as a percentage
 set $volumestep 5
 
-# pulseaudio-utils settings
+# alsa-utils settings
 #
-# Symbolic name for sink (numeric index not supported)
-#   Recommended: comment out this setting and omit the -s option to use default sink
-#   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
-#set $sinkname alsa_output.pci-0000_00_1b.0.analog-stereo
+# To configure a default card, see https://www.alsa-project.org/main/index.php/Asoundrc
+#
+# Card number to control.
+#   If not specified, i3-volume will let `amixer` use a default.
+#   List cards: aplay -l
+#set $alsacard 1
 
-# Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
-bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
-bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
-bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+# append "-c $alsacard" without quotes to override default card
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -an -t $statuscmd -u $statussig up $volumestep
+bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -an -t $statuscmd -u $statussig down $volumestep
+bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -an -t $statuscmd -u $statussig mute
+
+
+# Set shut down, restart and locking features
+bindsym $mod+minus mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# Lock screen
+bindsym $sec+L exec --no-startup-id blurlock
+
+# Autostart applications
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id clipit
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb
+# exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_green
+# exec --no-startup-id xautolock -time 10 -detectsleep -locker blurlock
+# exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+exec --no-startup-id gajim
+
+
+# Wallpaper
+exec_always feh --bg-fill /usr/share/backgrounds/glowing_lake.jpg
+
+
+# PacketTracer floating
+for_window [class="PacketTracer"] floating enable
+for_window [title="DraftRoom"] floating enable
+
+for_window [title="pt"] floating toggle
+

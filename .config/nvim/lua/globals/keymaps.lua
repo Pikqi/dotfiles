@@ -52,17 +52,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
 keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 
--- Chose buffer
-keymap("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<cr>", opts)
-keymap("n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<cr>", opts)
-keymap("n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<cr>", opts)
-keymap("n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<cr>", opts)
-keymap("n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<cr>", opts)
-keymap("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<cr>", opts)
-keymap("n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<cr>", opts)
-keymap("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<cr>", opts)
-keymap("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<cr>", opts)
-keymap("n", "<A-0>", "<cmd>BufferLineGoToBuffer -1<cr>", opts)
 -- Insert
 -- Move text up and down
 keymap("i", "<M-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -101,14 +90,3 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 keymap("x", ",", ":CommentToggle<CR>", opts)
-
-keymap('n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
-keymap('n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
-keymap('n', '<leader>3', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
-keymap('n', '<leader>4', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
-keymap('n', '<leader>5', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
-keymap('n', '<leader>6', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
-keymap('n', '<leader>7', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
-keymap('n', '<leader>8', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
-keymap('n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
-keymap('n', '<leader>$', '<Cmd>BufferLineGoToBuffer -1<CR>', opts)

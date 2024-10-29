@@ -15,7 +15,7 @@ alias gl='git log'
 alias aptup='sudo apt update && sudo apt upgrade'
 
 alias vimcheat='xdg-open https://vim.rtorr.com/'
-alias vim='nvim'
+# alias vim='nvim'
 alias nv="nvim ."
 
 alias ta="tmux a || tmux"
@@ -28,15 +28,17 @@ alias tl="tmuxifier load-session launchpad-client"
 alias ssh!="ssh home"
 
 alias lg="lazygit"
-alias lazyconfig="lazygit -w $HOME --git-dir $HOME/.local/share/yadm/repo.git"
+# alias lazyconfig="lazygit -w $HOME --git-dir $HOME/.local/share/yadm/repo.git"
 
 # Alias for dotfiles git repo
-# alias config='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME' 
-# alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME' 
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
+alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
 
 alias r="ranger"
 alias cl="clear"
 alias bl="bluetuith"
+
+alias todo="glow $HOME/docs/OPVault/400\ Hobi/todoLinux.md"
 
 # LS 
 alias l="exa -l"
@@ -66,3 +68,13 @@ tn (){
 	session_name=$(basename "$PWD")
 	tmux new-session -s "$session_name"
 }
+
+manv (){
+	man $1 | nvim
+}
+
+
+alias bt="bluetuith"
+
+alias nn="NVIM_APPNAME=novi-nvim nvim"
+alias godot="~/games/Godot_v4.3-stable_linux.x86_64"
