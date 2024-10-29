@@ -28,11 +28,10 @@ alias tl="tmuxifier load-session launchpad-client"
 alias ssh!="ssh home"
 
 alias lg="lazygit"
-# alias lazyconfig="lazygit -w $HOME --git-dir $HOME/.local/share/yadm/repo.git"
 
 # Alias for dotfiles git repo
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
-alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles' 
+alias lazyconfig='lazygit --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles' 
 
 alias r="ranger"
 alias cl="clear"
