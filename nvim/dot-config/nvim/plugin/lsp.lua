@@ -12,6 +12,14 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+lspconfig.arduino_language_server.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		enable_autofix = true,
+	},
+})
+
 lspconfig.gopls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -64,6 +72,10 @@ lspconfig.ts_ls.setup({
 -- lspconfig.eslint.setup {
 -- 	on_attach = on_attach
 -- }
+
+lspconfig.zls.setup({
+	on_attach = on_attach,
+})
 
 lspconfig.pylsp.setup({
 	on_attach = on_attach,
