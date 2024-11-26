@@ -62,10 +62,12 @@ bindsym $sec+space exec "rofi -show run"
 # Applications
 bindsym $mod+p exec /usr/bin/librewolf
 bindsym $mod+o exec /usr/bin/obsidian
+bindsym $mod+m exec /usr/bin/betterbird
 
 # Autorandr
 bindsym $mod+Shift+comma exec autorandr mobile
 bindsym $mod+Shift+period exec autorandr -c
+bindsym $mod+Shift+slash exec autorandr -c docked
 
 # change focus
 bindsym $mod+h focus left
@@ -312,6 +314,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id betterbird
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
