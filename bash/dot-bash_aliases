@@ -77,3 +77,6 @@ alias bt="bluetuith"
 
 alias nn="NVIM_APPNAME=novi-nvim nvim"
 alias godot="~/games/Godot_v4.3-stable_linux.x86_64"
+
+alias latinica="setxkbmap rs latin"
+alias en="setxkbmap us euro"
