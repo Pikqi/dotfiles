@@ -69,6 +69,10 @@ bindsym $mod+Shift+comma exec autorandr mobile
 bindsym $mod+Shift+period exec autorandr -c
 bindsym $mod+Shift+slash exec autorandr -c docked
 
+# Screenshot
+bindsym Print exec spectacle --activewindow
+bindsym $mod+Print exec spectacle --region
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -338,4 +342,5 @@ for_window [class="PacketTracer"] floating enable
 for_window [title="DraftRoom"] floating enable
 
 for_window [title="pt"] floating toggle
+
 
