@@ -12,6 +12,10 @@
             {
                 "language": ["typescript", "typescriptreact"],
                 "path": "./typesript.json"
+            },
+            {
+                "language": ["zig"],
+                "path": "./zig.json"
             }
         ]
     }

@@ -1,0 +1,118 @@
+{
+	"While with index": {
+		"scope": "zig",
+		"prefix": "whilei",
+		"body": [
+			"var ${1:i}: usize = 0;",
+			"while (${1:i} < $2) {",
+			"\t$0",
+			"\t${1:i} += 1;",
+			"}"
+		]
+	},
+	"While with index reversed": {
+		"scope": "zig",
+		"prefix": "whileir",
+		"body": [
+			"var ${1:i}: usize = $2 + 1;",
+			"while (${1:i} > 0) {",
+			"\t${1:i} -= 1;",
+			"\t$0",
+			"}"
+		]
+	},
+	"If optional": {
+		"scope": "zig",
+		"prefix": "ifopt",
+		"body": [
+			"if (${1}) |${2:v}| {",
+			"\t$0",
+			"}"
+		]
+	},
+	"This/Self": {
+		"scope": "zig",
+		"prefix": "this",
+		"body": [
+			"this: *@This()"
+		]
+	},
+	"Struct with an allocator": {
+		"scope": "zig",
+		"prefix": "struct alloc",
+		"body": [
+			"const ${1:MyStruct} = struct {",
+			"   allocator: std.mem.Allocator,",
+			"   data: []u8,",
+			"",
+			"   fn init(allocator: std.mem.Allocator) !${1:MyStruct} {",
+			"      return .{",
+			"         .allocator = allocator,",
+			"         .data = try allocator.alloc(u8, 64),",
+			"      };",
+			"   }",
+			"",
+			"   fn deinit(self: *${1:MyStruct}) void {",
+			"      self.allocator.free(self.data);",
+			"   }",
+			"};"
+		]
+	},
+	"ArrayList": {
+		"scope": "zig",
+		"prefix": "list",
+		"body": "std.ArrayList(${1:type}).init(${2:allocator});"
+	},
+	"ArrayList with Capacity": {
+		"scope": "zig",
+		"prefix": "list capacity",
+		"body": "try std.ArrayList(${1:type}).initCapacity(${2:allocator}, ${3:1024});"
+	},
+	"Self": {
+		"scope": "zig",
+		"prefix": "self",
+		"body": "const Self = @This();"
+	},
+	"Self function": {
+		"scope": "zig",
+		"prefix": "fnself",
+		"body": "fn ${1:name} (self: *${2:Self}) void {$0}"
+	},
+	"Tagged union example": {
+		"scope": "zig",
+		"prefix": "tagged union full",
+		"body": [
+			"const MyType = struct {};",
+			"",
+			"const MyTag = enum {",
+			"    MyType,",
+			"};",
+			"",
+			"const MyTaggedUnion = union(MyTag) {",
+			"    MyType: MyType,",
+			"};"
+		]
+	},
+	"GeneralPurposeAllocator": {
+		"scope": "zig",
+		"prefix": "gpa",
+		"body": [
+			"var gpa = std.heap.GeneralPurposeAllocator(.{}){};",
+			"const alloc = gpa.allocator();",
+			"defer _ = gpa.deinit();"
+		]
+	},
+	"FixedBufferAllocator": {
+		"scope": "zig",
+		"prefix": "fba",
+		"body": [
+			"var buffer: [${1:64}]u8 = undefined;",
+			"var fba = std.heap.FixedBufferAllocator.init(&buffer);",
+			"const alloc = fba.allocator();"
+		]
+	},
+	"Function pointer": {
+		"prefix": "fnptr",
+		"body": "*const fn (${1:args}) ${2:ReturnType}"
+	}
+}
