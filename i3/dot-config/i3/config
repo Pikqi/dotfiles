@@ -69,6 +69,9 @@ bindsym $mod+Shift+comma exec autorandr mobile
 bindsym $mod+Shift+period exec autorandr -c
 bindsym $mod+Shift+slash exec autorandr -c docked
 
+# Keyboard layout
+bindsym $mod+Shift+space exec ~/.config/i3/scripts/chnage_keyboard_layout.sh
+
 # Screenshot
 bindsym Print exec spectacle --activewindow
 bindsym $mod+Print exec spectacle --region
@@ -244,6 +247,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Transparency and blur
 exec --no-startup-id picom -CGb
+
+ exec --no-startup-id dunst 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
