@@ -112,6 +112,7 @@ return require("packer").startup(function(use)
 	-- }
 	use({ "saadparwaiz1/cmp_luasnip" })
 
+	use("sakhnik/nvim-gdb")
 	use("dnlhc/glance.nvim")
 
 	-- use 'nvim-pack/nvim-spectre'
