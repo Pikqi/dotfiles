@@ -284,7 +284,7 @@ local mappings = {
 	},
 	{
 		"<leader>sb",
-		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = true})<cr>",
 		desc = "Buffers",
 		nowait = false,
 		remap = false,
@@ -359,6 +359,13 @@ local mappings = {
 		remap = false,
 	},
 	{
+		"<leader>ti",
+		"<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+		desc = "Show whitespace",
+		nowait = false,
+		remap = false,
+	},
+	{
 		"<leader>tg",
 		desc = "<cmd> Gitsigns toggle_current_line_blame<CR>",
 		nowait = false,
@@ -371,13 +378,13 @@ local mappings = {
 		nowait = false,
 		remap = false,
 	},
-	{
-		"<leader>ti",
-		"<cmd>IndentBlanklineToggle!<CR>",
-		desc = "TS indent",
-		nowait = false,
-		remap = false,
-	},
+	-- {
+	-- 	"<leader>ti",
+	-- 	"<cmd>IndentBlanklineToggle!<CR>",
+	-- 	desc = "TS indent",
+	-- 	nowait = false,
+	-- 	remap = false,
+	-- },
 	{
 		"<leader>tr",
 		"<cmd>TSToggle rainbow<CR>",
