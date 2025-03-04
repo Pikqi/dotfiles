@@ -157,8 +157,7 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-export ZVM_INSTALL="$HOME/.zvm/self"
-export PATH="$PATH:$HOME/.zvm/bin"
+export PATH="$PATH:$HOME/zig/"
 export PATH="$PATH:/Users/petarobradovic/.foundry/bin"
 export PATH="$PATH:/home/petar/.platformio/penv/bin"
+export BAT_THEME="gruvbox-dark"

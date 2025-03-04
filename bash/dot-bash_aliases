@@ -63,6 +63,14 @@ fc() {
   fi
 }
 
+zup() {
+  local selected_file
+  selected_file="$(zigup fetch-index | jq 'to_entries | map([.key]) | flatten | .[] | .' -r | fzf)"
+  if [ -n "$selected_file" ]; then
+		zigup  "$selected_file"
+  fi
+}
+
 tn (){
 	session_name=$(basename "$PWD")
 	tmux new-session -s "$session_name"
@@ -70,6 +78,15 @@ tn (){
 
 manv (){
 	man $1 | nvim
+}
+
+manb (){
+	if ! type "bat" > /dev/null; then
+		man $1
+	
+	else
+		man $1 | bat -l man -p
+	fi
 }
 
 
@@ -80,3 +97,5 @@ alias godot="~/games/Godot_v4.3-stable_linux.x86_64"
 
 alias latinica="setxkbmap rs latin"
 alias en="setxkbmap us euro"
+
+alias vpn="wg-quick up wg1"
