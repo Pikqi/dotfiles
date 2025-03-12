@@ -13,7 +13,7 @@ Id_7=73249d56-ffe6-405c-8bcf-146feb18e497
 Id_8=32d0ac76-89ec-4667-b8f5-7d25b750fc4f
 Id_9=8550c4f0-b55b-4f14-822c-4598465f9510
 Number=10
-Rows=10
+Rows=2
 
 [Plugins]
 fadedesktopEnabled=true
