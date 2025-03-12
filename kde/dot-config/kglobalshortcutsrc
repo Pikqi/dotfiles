@@ -34,7 +34,7 @@ mute=Volume Mute,Volume Mute,Mute
 [ksmserver]
 Halt Without Confirmation=none,,Shut Down Without Confirmation
 Lock Session=none,Meta+L\tScreensaver,Lock Session
-Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Show Logout Screen
+Log Out=Meta+_\tCtrl+Alt+Del,Ctrl+Alt+Del,Show Logout Screen
 Log Out Without Confirmation=none,,Log Out Without Confirmation
 LogOut=none,,Log Out
 Reboot=none,,Reboot
@@ -63,7 +63,7 @@ KrohnkiteFloatingLayout=none,none,Krohnkite: Floating Layout
 KrohnkiteFocusDown=Meta+J,none,Krohnkite: Focus Down
 KrohnkiteFocusLeft=Meta+H,none,Krohnkite: Focus Left
 KrohnkiteFocusNext=none,none,Krohnkite: Focus Next
-KrohnkiteFocusPrev=Meta+\\,,none,Krohnkite: Focus Previous
+KrohnkiteFocusPrev=none,none,Krohnkite: Focus Previous
 KrohnkiteFocusRight=Meta+L,none,Krohnkite: Focus Right
 KrohnkiteFocusUp=Meta+K,none,Krohnkite: Focus Up
 KrohnkiteGrowHeight=Meta+Ctrl+J,none,Krohnkite: Grow Height
@@ -99,6 +99,7 @@ MoveZoomUp=none,none,Move Zoomed Area Upwards
 Overview=Meta+W,Meta+W,Toggle Overview
 Setup Window Shortcut=none,,Setup Window Shortcut
 Show Desktop=none,Meta+D,Peek at Desktop
+Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Suspend Compositing
 Switch One Desktop Down=Meta+Ctrl+Down,Meta+Ctrl+Down,Switch One Desktop Down
 Switch One Desktop Up=Meta+Ctrl+Up,Meta+Ctrl+Up,Switch One Desktop Up
 Switch One Desktop to the Left=Meta+Ctrl+Left,Meta+Ctrl+Left,Switch One Desktop to the Left
@@ -299,14 +300,23 @@ New=Meta+Return
 [services][librewolf.desktop]
 _launch=Meta+P
 
+[services][obsidian.desktop]
+_launch=Meta+O
+
+[services][org.kde.dolphin.desktop]
+_launch=
+
 [services][org.kde.krunner.desktop]
 _launch=Alt+F2\tSearch\tMeta+Backspace
 
 [services][org.kde.kscreen.desktop]
-ShowOSD=Display
+ShowOSD=Meta+Shift+D\tDisplay
 
 [services][org.kde.plasma.emojier.desktop]
 _launch=none
 
 [services][org.kde.spectacle.desktop]
 RecordWindow=none
+
+[services][systemsettings.desktop]
+_launch=Tools\tMeta+,
