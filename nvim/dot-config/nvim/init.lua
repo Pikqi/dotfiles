@@ -5,7 +5,8 @@ require('plugins')
 
 -- Define a function to search using Telescope with Ripgrep in the folder of the selected item in nvim-tree
 function TelescopeRipgrepInSelectedFolder()
-	local selected_node = require 'nvim-tree.lib'.get_node_at_cursor()
+	local nvimtreeapi = require("nvim-tree.api")
+	local selected_node = nvimtreeapi.tree.get_node_under_cursor()
 	if not selected_node then
 		print("No item selected.")
 		return
