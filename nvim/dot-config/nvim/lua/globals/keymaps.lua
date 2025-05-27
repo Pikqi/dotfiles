@@ -127,7 +127,11 @@ keymap("n", "<leader>sc", ":Easypick changed_files<CR>", { desc = "Changed files
 keymap("n", "<leader>sC", ":Easypick changed_files_main<CR>", { desc = "Changed files from main" })
 keymap("n", "<leader>sK", ":Easypick conflicts<CR>", { desc = "Conflicts" })
 keymap("n", "<leader>sr", ":Telescope lsp_refrences<CR>", { desc = "Refrences" })
-keymap("n", "<leader>sS", ":Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Workspace symbols" })
+keymap("n", "<leader>sS", ":Telescope lsp_document_symbols<CR>", { desc = "Document symbols" })
+keymap("n", "<leader>sW", ":Telescope lsp_workspace_symbols<CR>", { desc = "Workspace symbols" })
+keymap("n", "<leader>s/", ":Telescope search_history<CR>", { desc = "Search history" })
+keymap("n", "<leader>sw", ":Telescope grep_string<CR>", { desc = "Find selection" })
+keymap("n", "<leader>sp", ":Telescope spell_suggest<CR>", { desc = "Spell suggest" })
 
 -- t Toggles
 keymap("n", "<leader>tb", ":set list!<CR>", { desc = "Show whitespace" })
@@ -161,6 +165,7 @@ keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" 
 keymap("n", "<leader>gl", ":Gitsigns toggle_linehl<CR>", { desc = "Show lines" })
 keymap("n", "<leader>gw", ":Gitsigns toggle_word_diff<CR>", { desc = "Show word diff" })
 keymap("n", "<leader>gx", ":Telescope git_branches<CR>", { desc = "Branches" })
+keymap("n", "<leader>gB", ":Telescope git_bcommits<CR>", { desc = "Buffer commits" })
 -- d Diagnostics
 
 keymap("n", "<leader>da", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions" })

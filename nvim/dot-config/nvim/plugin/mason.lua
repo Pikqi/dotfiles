@@ -9,6 +9,4 @@ if not status_ok then
 end
 
 mason.setup()
-mason_lspconfig.setup({
-	automatic_installation = true,
-})
+mason_lspconfig.setup()
