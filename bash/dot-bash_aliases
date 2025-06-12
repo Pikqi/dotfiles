@@ -40,8 +40,8 @@ alias bl="bluetuith"
 alias todo="glow $HOME/docs/OPVault/400\ Hobi/todoLinux.md"
 
 # LS 
-alias l="exa -l"
-alias la="exa -la"
+alias l="eza -l"
+alias la="eza -la"
 
 alias p="pnpm"
 alias gcci="git commit --allow-empty -m \"trigger ci/cd\""
