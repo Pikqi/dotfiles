@@ -175,9 +175,9 @@ key = "LBracket"
 mods = "Control"
 
 [window]
-decorations = "none"
+# decorations = "none"
 dynamic_padding = false
-opacity = 0.9
+opacity = 0.95
 
 [window.padding]
 x = 0
