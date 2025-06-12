@@ -1,7 +1,8 @@
 require("globals.options")
 require("globals.configs")
 require "globals.keymaps"
-require('plugins')
+-- require('plugins')
+require("config.lazy")
 
 -- Define a function to search using Telescope with Ripgrep in the folder of the selected item in nvim-tree
 function TelescopeRipgrepInSelectedFolder()

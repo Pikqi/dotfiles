@@ -5,7 +5,7 @@ local defaults = { silent = true, noremap = true, }
 -- Shorten function name
 -- local keymap = vim.api.nvim_set_keymap
 
-function keymap(mode, lhs, rhs, opts)
+local function keymap(mode, lhs, rhs, opts)
 	local final_opts = {};
 	for k, v in pairs(defaults) do final_opts[k] = v end
 	for k, v in pairs(opts) do final_opts[k] = v end
@@ -159,8 +159,8 @@ keymap("n", "<leader>gR", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
 keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", { desc = "Show blame" })
 keymap("n", "<leader>gc", ":Telescope git_commits<CR>", { desc = "Checkout commit" })
 keymap("n", "<leader>gd", ":Gitsigns diffthis<CR>", { desc = "Diff" })
-keymap("n", "<leader>gj", ":Gitsigns next_hunk<CR>", { desc = "Next hunk" })
-keymap("n", "<leader>gk", ":Gitsigns prev_hunk<CR>", { desc = "Prev hunk" })
+keymap("n", "<leader>gj", ":Gitsigns nav_hunk next<CR>", { desc = "Next hunk" })
+keymap("n", "<leader>gk", ":Gitsigns nav_hunk prev<CR>", { desc = "Prev hunk" })
 keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
 keymap("n", "<leader>gl", ":Gitsigns toggle_linehl<CR>", { desc = "Show lines" })
 keymap("n", "<leader>gw", ":Gitsigns toggle_word_diff<CR>", { desc = "Show word diff" })
