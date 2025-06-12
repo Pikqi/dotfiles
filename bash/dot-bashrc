@@ -141,23 +141,22 @@ export EDITOR="nvim"
 shopt -s autocd
 eval "$(zoxide init bash)"
 
-source $HOME/.config/broot/launcher/bash/br
 export PATH="$(yarn global bin):$PATH"
 
-# Tmuxifier 
-export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
-eval "$(tmuxifier init -)"
+# # Tmuxifier 
+# export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
+# eval "$(tmuxifier init -)"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export BROWSER="/usr/bin/librewolf"
+# export BROWSER="/usr/bin/librewolf"
 
 export PNPM_HOME="/Users/petarobradovic/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-export PATH="$PATH:$HOME/zig/"
+export PATH="$HOME/zig/:$PATH"
 export PATH="$PATH:/Users/petarobradovic/.foundry/bin"
 export PATH="$PATH:/home/petar/.platformio/penv/bin"
 export BAT_THEME="gruvbox-dark"

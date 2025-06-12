@@ -55,14 +55,6 @@ fv() {
   fi
 }
 
-fc() {
-  local selected_file
-  selected_file="$(fzf)"
-  if [ -n "$selected_file" ]; then
-		code "$selected_file"
-  fi
-}
-
 zup() {
   local selected_file
   selected_file="$(zigup fetch-index | jq 'to_entries | map([.key]) | flatten | .[] | .' -r | fzf)"
