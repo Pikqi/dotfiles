@@ -256,15 +256,12 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "mako"
 spawn-at-startup "waybar"
-spawn-at-startup "feh --bg-fill ~/wallpaper.png"
+spawn-at-startup "swww-daemon"
 
 // Xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
-// Or, if you built it by hand:
-// spawn-at-startup "~/path/to/code/target/release/xwayland-satellite"
 
 environment {
     DISPLAY ":0"
@@ -295,8 +292,19 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     slowdown 0.8
+
+		window-open {
+        duration-ms 50
+        curve "ease-out-expo"
+    }
 }
 
+
+window-rule {
+	match app-id="Alacritty"
+	default-column-width { proportion 0.33;}
+
+}
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -368,8 +376,10 @@ binds {
     Mod+Backspace hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
     Mod+O hotkey-overlay-title="Run an Application: obsidian" { spawn "obsidian"; }
+    Mod+z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+B { spawn "bash" "-c" "pkill -USR1 waybar"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
