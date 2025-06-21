@@ -299,3 +299,8 @@ window#waybar {
     color: @red;
     border-bottom-color: @red;
 }
+
+#custom-notification {
+  font-family: "Hack Nerd Font";
+	margin: 0 10px;
+}

@@ -6,7 +6,7 @@
     "margin": 0,
     "modules-left": ["niri/workspaces", "niri/mode", "custom/weather", "custom/quote"],
         "modules-center": ["clock"],                                                                           //battery   //disk     // uptime      //updates        // systray
-    "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "temperature",  "disk", "custom/uptime", "custom/updates", "tray"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature",  "disk", "custom/uptime", "custom/updates", "custom/notification","tray"],
 
 
     "niri/workspaces": {
@@ -25,7 +25,7 @@
         "max-length": 40,
         "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{artist}} - {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
         "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl next",
+        "on-click-right": "playerctl next"
     },
 
     "custom/weather": {
@@ -48,6 +48,26 @@
         "exec": "uptime -p | sed 's/up //; s/ days/d/; s/ hours/h/; s/ minutes/m/'",
         "interval": 60
     },
+		 "custom/notification": {
+			"tooltip": false,
+			"format": "{icon}",
+			"format-icons": {
+				"notification": "<span foreground='red'><sup></sup></span>",
+				"none": "",
+				"dnd-notification": "<span foreground='red'><sup></sup></span>",
+				"dnd-none": "",
+				"inhibited-notification": "<span foreground='red'><sup></sup></span>",
+				"inhibited-none": "",
+				"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+				"dnd-inhibited-none": ""
+			},
+			"return-type": "json",
+			"exec-if": "which swaync-client",
+			"exec": "swaync-client -swb",
+			"on-click": "swaync-client -t -sw",
+			"on-click-right": "swaync-client -d -sw",
+			"escape": true
+		},
 
     "idle_inhibitor": {
         "format": "{icon}",
