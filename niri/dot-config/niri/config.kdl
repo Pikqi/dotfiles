@@ -256,9 +256,10 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-spawn-at-startup "mako"
+spawn-at-startup "swaync"
 spawn-at-startup "waybar"
 spawn-at-startup "swww-daemon"
+
 
 // Xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
@@ -381,6 +382,8 @@ binds {
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+B { spawn "bash" "-c" "pkill -USR1 waybar"; }
 
+    Mod+N { spawn "swaync-client" "-t"; }
+    Mod+Shift+N { spawn "notify-send" "Test Notification" "Odit et quas laborum. Voluptatem et labore iusto aliquid atque accusamus fugiat. Cumque nobis et sint possimus. Qui nesciunt explicabo assumenda laborum ducimus aspernatur. Facere ut saepe praesentium quia reiciendis iusto. Expedita consectetur iure officia id iste aut porro sed." "-i" "firefox"; }
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
@@ -391,6 +394,9 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86MonBrightnessup     allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "+" "5"; }
+    XF86MonBrightnessdown     allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "-" "5"; }
+
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
