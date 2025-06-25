@@ -7,7 +7,6 @@ tl(){
 mkcd(){
   mkdir "$1" && cd "$1"
 }
-alias lla='ls -lA'
 
 alias gs='git status'
 alias gl='git log'
@@ -40,8 +39,10 @@ alias bl="bluetuith"
 alias todo="glow $HOME/docs/OPVault/400\ Hobi/todoLinux.md"
 
 # LS 
-alias l="eza -l"
-alias la="eza -la"
+alias l="eza -l || ls -l"
+alias ll="eza -l || ls -l"
+alias la="eza -la || ls -la"
+alias lla='eza -lA || ls -lA'
 
 alias p="pnpm"
 alias gcci="git commit --allow-empty -m \"trigger ci/cd\""
