@@ -1,6 +1,10 @@
 return {
 	{
 		"saghen/blink.cmp",
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"leiserfg/blink_luasnip",
+		},
 
 		version = '1.*',
 		keymap = { preset = 'default' },
@@ -9,6 +13,7 @@ return {
 		---@type blink.cmp.Config
 		opts = {
 
+			snippets = { preset = 'luasnip' },
 			completion = { documentation = { auto_show = true } },
 			sources = {
 				default = { 'lsp', 'path', 'snippets' },
