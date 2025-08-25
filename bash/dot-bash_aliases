@@ -50,7 +50,7 @@ alias gcci="git commit --allow-empty -m \"trigger ci/cd\""
 # Opens a file in neovim using fzf search, only if fzf returns any value
 fv() {
   local selected_file
-  selected_file="$(fzf)"
+  selected_file="$(fzf --walker=file)"
   if [ -n "$selected_file" ]; then
     nvim "$selected_file"
   fi
@@ -92,3 +92,8 @@ alias latinica="setxkbmap rs latin"
 alias en="setxkbmap us euro"
 
 alias vpn="wg-quick up wg1"
+
+sshf () {
+	ssh $(grep Host -w ~/.ssh/config | awk '{print $2}' | fzf)
+}
+
