@@ -4,20 +4,10 @@
     "height": 30,
     "spacing": 1,
     "margin": 0,
-    "modules-left": ["niri/workspaces", "niri/mode", "custom/weather", "custom/quote"],
+    "modules-left": ["custom/weather"],
         "modules-center": ["clock"],                                                                           //battery   //disk     // uptime      //updates        // systray
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature",  "disk", "custom/uptime", "custom/updates", "custom/notification","tray"],
 
-
-    "niri/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{value}"
-    },
-
-    "niri/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
 
     "custom/playerctl": {
         "format": " 󰐊 {}",
