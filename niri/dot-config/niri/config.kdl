@@ -111,6 +111,18 @@ output "eDP-1" {
 
     transform "normal"
 }
+
+workspace "chat" {}
+window-rule {
+    match app-id="Gajim"
+    open-on-workspace "chat"
+}
+
+window-rule {
+    match app-id="ferdium"
+    open-on-workspace "chat"
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
@@ -123,6 +135,7 @@ layout {
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
     center-focused-column "never"
+    empty-workspace-above-first
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -267,9 +280,11 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
+spawn-at-startup "swww-daemon"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "swayidle"
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
-spawn-at-startup "swww-daemon"
 
 
 // Xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
@@ -277,6 +292,7 @@ spawn-at-startup "xwayland-satellite"
 
 environment {
     DISPLAY ":0"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 
@@ -314,7 +330,7 @@ animations {
 
 window-rule {
 	match app-id="Alacritty"
-	default-column-width { proportion 0.33;}
+	default-column-width { proportion 0.5;}
 
 }
 // Window rules let you adjust behavior for individual windows.
@@ -362,7 +378,7 @@ window-rule {
 
 overview{
 
-	zoom 0.6
+	zoom 0.4
 }
 
 
@@ -383,12 +399,13 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
+    Mod+Shift+S hotkey-overlay-title="Suspend" { spawn "bash" "-c" "systemctl suspend" "&&" "swaylock"; }
+
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+Backspace hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
     Mod+O hotkey-overlay-title="Run an Application: obsidian" { spawn "obsidian"; }
-    Mod+z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
+    Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+B { spawn "bash" "-c" "pkill -USR1 waybar"; }
@@ -401,8 +418,10 @@ binds {
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "+5" "--max-volume" "120"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5" "--max-volume" "120"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86MonBrightnessup     allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "+" "5"; }
@@ -500,8 +519,8 @@ binds {
     // You can set a cooldown on any bind, but it's most useful for the wheel.
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
@@ -510,8 +529,8 @@ binds {
 
     // Usually scrolling up and down with Shift in applications results in
     // horizontal scrolling; these binds replicate that.
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+WheelScrollDown      { focus-column-right; }
+    Mod+Ctrl+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
@@ -550,6 +569,12 @@ binds {
     Mod+Shift+7 { move-column-to-workspace 7; }
     Mod+Shift+8 { move-column-to-workspace 8; }
     Mod+Shift+9 { move-column-to-workspace 9; }
+
+
+    Mod+S { focus-workspace "chat";}
+    Mod+A { focus-workspace-previous;}
+    Mod+Shift+M { spawn "bash" "-c" "niri msg action unset-workspace-name \"main\" && niri msg action set-workspace-name \"main\""; }
+    Mod+M { focus-workspace "main"; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
