@@ -111,7 +111,7 @@ keymap("n", "<leader>h", ":nohlsearch<cr>", { desc = "No highlight" })
 keymap("n", "<leader>f", ":Telescope find_files<cr>", { desc = "Find files" })
 keymap("n", "<leader>R", ":Telescope oldfiles<cr>", { desc = "Recent files" })
 keymap("n", "<leader>c", ":bdelete!<cr>:bnext<cr>", { desc = "Close buff" })
-keymap("n", "<leader>c", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all other buffers" })
+keymap("n", "<leader>C", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all other buffers" })
 
 keymap("n", "<leader>F", ":lua vim.lsp.buf.format()<CR>", { desc = "Format document" })
 
