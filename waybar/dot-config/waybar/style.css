@@ -96,6 +96,11 @@
 @define-color idle-inhibitor-color @foreground;
 @define-color idle-inhibitor-active-color @red;
 
+@define-color language-color @green;
+@define-color window-color @cyan;
+
+@define-color privacy-color @red;
+
 * {
     /* Base styling for all modules */
     border: none;
@@ -116,7 +121,7 @@ window#waybar {
 #mode, #mpd, #custom-weather, #custom-playerctl, #clock, #cpu,
 #memory, #temperature, #battery, #network, #pulseaudio,
 #backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
-#idle_inhibitor, #tray {
+#idle_inhibitor, #tray, #language, #window, #privacy {
     padding: 0 10px;
     margin: 0 2px;
     border-bottom: 2px solid transparent;
@@ -303,4 +308,22 @@ window#waybar {
 #custom-notification {
   font-family: "Hack Nerd Font";
 	margin: 0 10px;
+}
+
+#language {
+	border-bottom-color: @language-color;
+	color: @language-color;
+}
+
+#window {
+
+	border-bottom-color: @window-color;
+	color: @window-color;
+}
+
+#privacy {
+
+	border-bottom-color: @privacy-color;
+	color: @privacy-color;
+
 }
