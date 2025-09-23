@@ -101,6 +101,18 @@ output "DP-3" {
 }
 
 
+
+output "HDMI-A-2" {
+    // Uncomment this line to disable this output.
+    // off
+
+    mode "1920x1080@60.031"
+    scale 0.7
+		
+
+    transform "normal"
+}
+
 output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
@@ -411,6 +423,8 @@ binds {
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+B { spawn-sh "pkill -USR1 waybar"; }
+    Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+B { spawn "bash" "-c" "pkill -USR1 waybar"; }
 
     Mod+N { spawn "swaync-client" "-t"; }
     Mod+Shift+N { spawn "notify-send" "Test Notification" "Odit et quas laborum. Voluptatem et labore iusto aliquid atque accusamus fugiat. Cumque nobis et sint possimus. Qui nesciunt explicabo assumenda laborum ducimus aspernatur. Facere ut saepe praesentium quia reiciendis iusto. Expedita consectetur iure officia id iste aut porro sed." "-i" "firefox"; }
@@ -426,8 +440,8 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-5" "--max-volume" "120"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    XF86MonBrightnessup     allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "+" "5"; }
-    XF86MonBrightnessdown     allow-when-locked=true { spawn "ddcutil" "setvcp" "10" "-" "5"; }
+    XF86MonBrightnessup     allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
+    XF86MonBrightnessdown     allow-when-locked=true { spawn "brightnessctl" "set" "10%-"; }
 
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
