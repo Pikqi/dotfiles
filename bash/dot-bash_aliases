@@ -40,12 +40,14 @@ alias todo="glow $HOME/docs/OPVault/400\ Hobi/todoLinux.md"
 
 # LS 
 alias l="eza -l || ls -l"
-alias ll="eza -l || ls -l"
+alias ll="eza -l || ^ls -l"
 alias la="eza -la || ls -la"
 alias lla='eza -lA || ls -lA'
 
 alias p="pnpm"
 alias gcci="git commit --allow-empty -m \"trigger ci/cd\""
+alias fop='xdg-open "$(fzf --walker=file)" '
+alias ob='nvim "$(fzf --walker-root=Documents/OPVault/)"'
 
 # Opens a file in neovim using fzf search, only if fzf returns any value
 fv() {
@@ -97,3 +99,6 @@ sshf () {
 	ssh $(grep Host -w ~/.ssh/config | awk '{print $2}' | fzf)
 }
 
+alias orca="export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json && export WEBKIT_FORCE_COMPOSITING_MODE=1 && export && export WEBKIT_DISABLE_COMPOSITING_MODE=1 && export WEBKIT_DISABLE_DMABUF_RENDERER=1 && orca-slicer"
+
+alias whitenoise="mpv ~/Music/noise.opus"

@@ -102,6 +102,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bash_optional.bash ]; then
+    . ~/.bash_optional.bash
+fi
+
+if [ -f ~/.bash_completions.bash ]; then
+    . ~/.bash_completions.bash
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -148,12 +156,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # export BROWSER="/usr/bin/librewolf"
 
-export PNPM_HOME="/Users/petarobradovic/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-export PATH="$HOME/zig/:$PATH"
-export PATH="$PATH:/Users/petarobradovic/.foundry/bin"
-export PATH="$PATH:/home/petar/.platformio/penv/bin"
+export ZVM_INSTALL="$HOME/.zvm/self"
+export PATH="$HOME/.zvm/bin/:$PATH"
 export BAT_THEME="gruvbox-dark"
