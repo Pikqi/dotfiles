@@ -1,0 +1,1 @@
+niri msg action focus-window --id  $(niri msg windows | grep -B 1 -A 1 'Title:' | tr '\n' ' ' | sed 's/--/\n/g' | choose 2:-1 | sed 's/://g' | sed 's/\"//g' | sed 's/Title//g' | sed 's/App ID//g' | choose -1 0 1:-2 | fuzzel --dmenu -w 200 | choose 1)

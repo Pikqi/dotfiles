@@ -114,13 +114,13 @@ output "eDP-1" {
 
 workspace "chat" {}
 window-rule {
+    match app-id="im.dino.Dino"
     match app-id="Gajim"
-    open-on-workspace "chat"
-}
-
-window-rule {
+    match app-id="signal"
     match app-id="ferdium"
+    match app-id="Ferdium"
     open-on-workspace "chat"
+    block-out-from "screen-capture"
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -286,7 +286,6 @@ spawn-at-startup "swayidle"
 spawn-at-startup "swaync"
 spawn-at-startup "waybar"
 
-
 // Xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
 
@@ -403,12 +402,15 @@ binds {
 
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+Backspace hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+
+    Alt+Space hotkey-overlay-title="switch window" { spawn-sh "~/.config/niri/scripts/switch-window.sh"; }
+
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
     Mod+O hotkey-overlay-title="Run an Application: obsidian" { spawn "obsidian"; }
     Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Mod+B { spawn "bash" "-c" "pkill -USR1 waybar"; }
+    Mod+B { spawn-sh "pkill -USR1 waybar"; }
 
     Mod+N { spawn "swaync-client" "-t"; }
     Mod+Shift+N { spawn "notify-send" "Test Notification" "Odit et quas laborum. Voluptatem et labore iusto aliquid atque accusamus fugiat. Cumque nobis et sint possimus. Qui nesciunt explicabo assumenda laborum ducimus aspernatur. Facere ut saepe praesentium quia reiciendis iusto. Expedita consectetur iure officia id iste aut porro sed." "-i" "firefox"; }
