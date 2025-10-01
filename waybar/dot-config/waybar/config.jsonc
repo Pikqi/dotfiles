@@ -15,6 +15,7 @@
 	"modules-right": [
 		"niri/language",
 		"pulseaudio",
+		"battery",
 		"network",
 		"cpu",
 		"memory",
