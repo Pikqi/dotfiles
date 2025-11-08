@@ -13,9 +13,10 @@ input {
             // For more information, see xkeyboard-config(7).
 
             // For example:
-            // layout "us,ru"
+            layout "us, rs(latin), rs"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
+				track-layout "window"
 
         // Enable numlock on startup, omitting this setting disables it.
         numlock
@@ -134,8 +135,9 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "never"
+    center-focused-column "on-overflow"
     empty-workspace-above-first
+		always-center-single-column
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -292,6 +294,8 @@ spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+		GTK_THEME "Adwaita:dark"
+
 }
 
 
@@ -406,11 +410,11 @@ binds {
     Alt+Space hotkey-overlay-title="switch window" { spawn-sh "~/.config/niri/scripts/switch-window.sh"; }
 
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
-    Mod+O hotkey-overlay-title="Run an Application: obsidian" { spawn "obsidian"; }
+    Mod+O hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
     Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Mod+B { spawn-sh "pkill -USR1 waybar"; }
+    Mod+Shift+B { spawn-sh "pkill -USR1 waybar"; }
 
     Mod+N { spawn "swaync-client" "-t"; }
     Mod+Shift+N { spawn "notify-send" "Test Notification" "Odit et quas laborum. Voluptatem et labore iusto aliquid atque accusamus fugiat. Cumque nobis et sint possimus. Qui nesciunt explicabo assumenda laborum ducimus aspernatur. Facere ut saepe praesentium quia reiciendis iusto. Expedita consectetur iure officia id iste aut porro sed." "-i" "firefox"; }
@@ -596,6 +600,7 @@ binds {
     Mod+Period { expel-window-from-column; }
 
     Mod+G { switch-preset-column-width; }
+    Mod+B { set-column-width "50%"; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
@@ -627,7 +632,7 @@ binds {
 
     // Move the focused window between the floating and the tiling layout.
     Mod+D       { toggle-window-floating; }
-    Mod+Space { switch-focus-between-floating-and-tiling; }
+    Mod+Control+Space { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -639,8 +644,8 @@ binds {
     // a matching layout switch hotkey configured in xkb options above.
     // Having both at once on the same hotkey will break the switching,
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
+    Mod+Space       { switch-layout "next"; }
+    Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot-screen; }
     Mod+Print { screenshot; }
@@ -663,4 +668,5 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
 }
