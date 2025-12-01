@@ -25,6 +25,16 @@ return {
 			}
 
 			)
+			vim.lsp.config("zls", {
+				settings = {
+					enable_autofix = true,
+					enable_build_on_save = true,
+					build_on_save_step = { "check", "test" },
+				},
+				root_markers = { "build.zig", "build.zig.zon" },
+
+			})
+
 			vim.lsp.enable("zls", true)
 		end
 
