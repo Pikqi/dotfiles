@@ -181,3 +181,17 @@ keymap("n", "<leader>ld", ":Glance definitions<CR>", { desc = "Glance definition
 keymap("n", "<leader>li", ":Glance implementations<CR>", { desc = "Glance implementations" })
 keymap("n", "<leader>lt", ":Glance type_definitions<CR>", { desc = "Glance type" })
 keymap("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
+
+-- a PARROT
+keymap("v", "<leader>ar", ":PrtRewrite<CR>", { desc = "Rewrite" })
+keymap("v", "<leader>as", ":PrtRewrite Spell<CR>", { desc = "Spell" })
+keymap("v", "<leader>ad", ":PrtPrepend Comment<CR>", { desc = "Comment" })
+keymap("v", "<leader>ac", ":PrtAppend Complete<CR>", { desc = "Complete" })
+keymap("v", "<leader>aC", ":PrtCompleteFullContext<CR>", { desc = "Complete full context" })
+keymap("n", "<leader>as", ":PrtChatFinder<CR>", { desc = "Find chat" })
+keymap("n", "<leader>an", ":PrtChatNew<CR>", { desc = "New chat" })
+keymap("v", "<leader>an", ":PrtChatNew<CR>", { desc = "New chat" })
+keymap("n", "<leader>aa", ":PrtAsk<CR>", { desc = "Ask" })
+keymap("v", "<leader>ak", ":PrtCodeConsultant<CR>", { desc = "Consult" })
+keymap("n", "<leader>at", ":PrtChatToggle popup<CR>", { desc = "Toggle chat" })
+keymap("n", "<leader>aT", ":PrtChatToggle vsplit<CR>", { desc = "Toggle chat" })

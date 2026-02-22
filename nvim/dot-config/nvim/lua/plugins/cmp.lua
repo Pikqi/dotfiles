@@ -16,7 +16,19 @@ return {
 			snippets = { preset = 'luasnip' },
 			completion = { documentation = { auto_show = true } },
 			sources = {
-				default = { 'lsp', 'path', 'snippets' },
+				default = { 'lsp', 'path', 'snippets', 'parrot' },
+				providers = {
+					parrot = {
+						module = "parrot.completion.blink",
+						name = "parrot",
+						score_offset = 20,
+						opts = {
+							show_hidden_files = false,
+							max_items = 50,
+						}
+					},
+
+				}
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 
