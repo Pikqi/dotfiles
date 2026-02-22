@@ -17,7 +17,7 @@ return {
 				-- if client.name == "ts_ls" then
 				-- 	client.server_capabilities.document_formatting = false
 				-- end
-				vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({timeout_ms=3000})]])
+				-- vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({timeout_ms=3000})]])
 			end
 
 			vim.lsp.config("*", {
