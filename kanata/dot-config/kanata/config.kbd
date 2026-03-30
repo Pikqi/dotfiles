@@ -1,0 +1,29 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  ralt
+  h j k l
+)
+
+(defalias
+  ;; Caps Lock: Tap for Esc, Hold for LCtrl
+  cap (tap-hold-press 200 200 esc lctl)
+  
+  ;; Right Alt: Switches to the "nav" layer while held
+  nav (layer-toggle navigation)
+)
+
+(deflayer base
+  @cap
+  @nav
+  h j k l
+)
+
+(deflayer navigation
+  _          ;; Ignore caps in this layer
+  _          ;; Ignore ralt in this layer
+  left down up rght
+)
