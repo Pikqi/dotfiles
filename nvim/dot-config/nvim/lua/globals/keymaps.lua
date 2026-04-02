@@ -195,3 +195,6 @@ keymap("n", "<leader>aa", ":PrtAsk<CR>", { desc = "Ask" })
 keymap("v", "<leader>ak", ":PrtCodeConsultant<CR>", { desc = "Consult" })
 keymap("n", "<leader>at", ":PrtChatToggle popup<CR>", { desc = "Toggle chat" })
 keymap("n", "<leader>aT", ":PrtChatToggle vsplit<CR>", { desc = "Toggle chat" })
+
+--
+keymap("n", "<leader>mC", ":RemoteSSHFSConnect<CR>", { desc = "RemoteSSHFSConnect" })
