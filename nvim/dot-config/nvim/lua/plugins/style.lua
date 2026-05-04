@@ -1,23 +1,14 @@
-return { {
-	"gruvbox-community/gruvbox",
-	priority = 1000,
-	config = function()
-		vim.cmd([[colorscheme gruvbox]])
-	end,
-},
+return {
 	{
-		"Fildo7525/pretty_hover",
-		event = "LspAttach",
-		opts = {}
-	},
-	{
-		"lewis6991/gitsigns.nvim",
+		"gruvbox-community/gruvbox",
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme gruvbox]])
+		end,
 	},
 	{
 		"folke/zen-mode.nvim",
 	},
-	{
-		"dnlhc/glance.nvim" },
 	{
 		"ya2s/nvim-cursorline",
 		opts = {
@@ -36,6 +27,5 @@ return { {
 		config = function()
 			vim.ui.select = require "popui.ui-overrider"
 		end
-
 	},
 }

@@ -173,7 +173,6 @@ keymap("n", "<leader>da", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code a
 keymap("n", "<leader>dh", ":lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostics" })
 keymap("n", "<leader>dj", ":lua vim.diagnostic.goto_next()<CR>", { desc = "Go to next" })
 keymap("n", "<leader>dk", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "Go to previous" })
-keymap("n", "<leader>dk", ":lua vim.diagnostic.goto_prev()<CR>", { desc = "Go to previous" })
 
 -- l LSP
 keymap("n", "<leader>lR", ":Glance references<CR>", { desc = "Glance refrences" })
