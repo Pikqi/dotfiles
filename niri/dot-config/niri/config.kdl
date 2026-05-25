@@ -41,7 +41,7 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed 0.2
+        // accel-speed 0.6
         // accel-profile "flat"
         // scroll-method "no-scroll"
     }
@@ -61,7 +61,9 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="20%"
+
+    workspace-auto-back-and-forth
 }
 
 // You can configure outputs by their name, which you can find
@@ -282,7 +284,8 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-spawn-at-startup "swww-daemon"
+spawn-at-startup "/usr/lib/soteria-polkit/soteria"
+spawn-at-startup "awww-daemon"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "swayidle"
 spawn-at-startup "swaync"
@@ -412,6 +415,9 @@ binds {
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
     Mod+O hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
     Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
+    Mod+V hotkey-overlay-title="Run an Application: thunar" { spawn "/usr/bin/thunar"; }
+    Mod+Shift+T hotkey-overlay-title="btop" { spawn-sh "alacritty -e btop"; }
+    Mod+M hotkey-overlay-title="open music tmux" { spawn-sh "alacritty -e ~/.config/scripts/tmux-music.sh"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Shift+B { spawn-sh "pkill -USR1 waybar"; }
@@ -579,8 +585,8 @@ binds {
 
     Mod+S { focus-workspace "chat";}
     Mod+A { focus-workspace-previous;}
-    Mod+Shift+M { spawn "bash" "-c" "niri msg action unset-workspace-name \"main\" && niri msg action set-workspace-name \"main\""; }
-    Mod+M { focus-workspace "main"; }
+    // Mod+Shift+M { spawn "bash" "-c" "niri msg action unset-workspace-name \"main\" && niri msg action set-workspace-name \"main\""; }
+    // Mod+M { focus-workspace "main"; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
