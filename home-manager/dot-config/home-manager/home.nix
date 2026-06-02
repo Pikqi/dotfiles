@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./syncthing.nix ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "anon";
@@ -32,7 +34,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -46,13 +48,14 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-pkgs.syncthing
-pkgs.ranger
-pkgs.man
-pkgs.zoxide
-pkgs.starship
-pkgs.neovim
-pkgs.lazygit
+		ranger
+		man
+		zoxide
+		starship
+		neovim
+		lazygit
+		ungoogled-chromium
+	  swaynotificationcenter
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
