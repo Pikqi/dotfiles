@@ -90,6 +90,8 @@ in
 		home-manager
 		bluetuith
 		cargo rustup rustc
+		brightnessctl ddcutil swayosd
+		xwayland-satellite
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -103,7 +105,7 @@ in
 
     packages = with pkgs; [
 			#  thunderbird
-			alacritty neovim vim git stow fuzzel ddcutil
+			alacritty neovim vim git stow fuzzel 
 			awww
 			keepassxc thunar
 			librewolf btop fastfetch
@@ -114,8 +116,8 @@ in
     ];
   };
 
-  # Install firefox.
   programs.niri.enable = true;
+	programs.xwayland.enable = true;
   
 
 
