@@ -4,10 +4,15 @@
 
 { config, pkgs, ... }:
 
+let
+user = "anon";
+
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			./gaming.nix
     ];
 
   # Bootloader.
@@ -79,13 +84,14 @@
 		tldr
 		home-manager
 		bluetuith
+		cargo rustup rustc
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."anon" = {
+  users.users.${user} = {
     isNormalUser = true;
     description = "anon";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -121,7 +127,18 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+	services.openssh = {
+			enable = true;
+			openFirewall = true;
+			settings = {
+				PasswordAuthentication = false;
+				KbdInteractiveAuthentication = false;
+				PermitRootLogin = "no";
+				AllowUsers = [ "anon" ];
+				MaxAuthTries = 3;
+				PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+			};
+		};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
