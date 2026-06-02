@@ -16,8 +16,13 @@ in
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+#  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
+	boot.loader.efi.canTouchEfiVariables = true;
+	boot.loader.grub.enable = true;
+	boot.loader.grub.devices = [ "nodev" ];
+	boot.loader.grub.efiSupport = true;
+	boot.loader.grub.useOSProber = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -80,7 +85,7 @@ in
     wget tmux git
     kanata
     nerd-fonts.hack
-    waybar
+    waybar wl-clipboard
 		tldr
 		home-manager
 		bluetuith
@@ -110,8 +115,6 @@ in
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
-
   programs.niri.enable = true;
   
 
