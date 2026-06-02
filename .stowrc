@@ -1,3 +1,4 @@
 --target=$HOME
 --dotfiles
 --verbose=1
+--ignore=nixos
