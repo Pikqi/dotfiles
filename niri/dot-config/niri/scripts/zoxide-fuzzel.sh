@@ -1,0 +1,1 @@
+dir=$(zoxide query -l | sed "s|^$HOME|~|" | fuzzel --dmenu) && dir=$(echo "$dir" | sed "s|^~|$HOME|") && alacritty --working-directory "$dir"
