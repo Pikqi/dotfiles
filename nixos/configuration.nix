@@ -47,9 +47,15 @@ in
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.defaultSession = "niri";
+  # services.xserver.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      animation = "colormix";
+    };
+  };
+  services.displayManager.defaultSession = "niri";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -153,6 +159,6 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
 
-  services.logind.lidSwitch = "suspend";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
 
 }
