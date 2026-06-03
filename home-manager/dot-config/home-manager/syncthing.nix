@@ -15,6 +15,7 @@
           devices = [
             "server"
             "pixel"
+            "pc"
           ];
           id = "4w5mn-got2k";
         };
@@ -23,6 +24,7 @@
           devices = [
             "server"
             "pixel"
+            "pc"
           ];
           id = "gtzen-gtkc4";
         };
@@ -31,6 +33,7 @@
           devices = [
             "server"
             "pixel"
+            "pc"
           ];
           id = "cqhrv-7kezv";
         };

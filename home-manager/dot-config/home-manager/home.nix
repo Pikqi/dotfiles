@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 
+let
+
+  lock_timeout = 300;
+  screen_off_timeout = 600;
+  suspend_timeout = 1200;
+
+in
 {
   imports = [ ./syncthing.nix ];
 
@@ -27,8 +34,14 @@
   programs.zoxide.enable = true;
   programs.lazygit.enable = true;
   programs.fuzzel.enable = true;
-  programs.btop.enable = true;
   programs.fzf.enable = true;
+
+  programs.btop = {
+    enable = true;
+    settings = {
+      vim_keys = true;
+    };
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -38,6 +51,38 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
+
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      show-failed-attempts = true;
+      indicator-radius = 75;
+      indicator-thickness = 15;
+      image = "${config.home.homeDirectory}/.config/swaylock/lockscreen.png";
+      scaling = "fill";
+    };
+  };
+
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = lock_timeout;
+        command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+      {
+        timeout = screen_off_timeout;
+        command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+      }
+      {
+        timeout = suspend_timeout;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
+    events = {
+      "before-sleep" = "${pkgs.swaylock}/bin/swaylock -f";
+    };
+  };
 
   home.packages = with pkgs; [
     # web
@@ -80,6 +125,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    "/home/anon/.config/swaylock/lockscreen.png".source = /home/anon/dotfiles/lockscreen.png;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.

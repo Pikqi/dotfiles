@@ -88,8 +88,10 @@ in
     brightnessctl
     ddcutil
     swayosd
+    swaylock
     xwayland-satellite
     tldr
+    gnumake
   ];
 
   fonts.packages = with pkgs; [ nerd-fonts.hack ];
@@ -191,5 +193,7 @@ in
       };
     };
   };
+
+  services.logind.lidSwitch = "suspend";
 
 }
