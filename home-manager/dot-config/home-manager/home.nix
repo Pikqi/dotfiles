@@ -32,6 +32,8 @@
   programs.fuzzel.enable = true;
   programs.fzf.enable = true;
 
+  services.cliphist.enable = true;
+
   programs.btop = {
     enable = true;
     settings = {
@@ -70,6 +72,7 @@
 
     # System utilities
     wl-clipboard
+    wtype
     bluetuith
     fastfetch
     sshfs

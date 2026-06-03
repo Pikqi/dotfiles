@@ -421,7 +421,7 @@ binds {
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
     Mod+O hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
     Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
-    Mod+V hotkey-overlay-title="Run an Application: thunar" { spawn "/usr/bin/thunar"; }
+    Mod+V hotkey-overlay-title="Clipboard history" { spawn-sh "~/.config/niri/scripts/cliphist-fuzzel.sh"; }
     Mod+Shift+T hotkey-overlay-title="btop" { spawn-sh "alacritty -e btop"; }
     Mod+M hotkey-overlay-title="open music tmux" { spawn-sh "alacritty -e ~/.config/scripts/tmux-music.sh"; }
 
