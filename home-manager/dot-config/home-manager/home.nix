@@ -9,19 +9,19 @@
   home.homeDirectory = "/home/anon";
 
   programs.git = {
-		enable = true;
-		lfs.enable = true;
-		settings.user = {
-			name = "Petar Obradovic";
-			email = "perazmn@gmail.com";
-			};
- includes = [
-    {
-      condition = "gitdir:~/dmz/";
-      path = "~/.gitconfig-decentrala";
-    }
-  ];
-		};
+    enable = true;
+    lfs.enable = true;
+    settings.user = {
+      name = "Petar Obradovic";
+      email = "perazmn@gmail.com";
+    };
+    includes = [
+      {
+        condition = "gitdir:~/dmz/";
+        path = "~/.gitconfig-decentrala";
+      }
+    ];
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -48,14 +48,16 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-		ranger
-		man
-		zoxide
-		starship
-		neovim
-		lazygit
-		ungoogled-chromium
-	  swaynotificationcenter
+    ranger
+    man
+    zoxide
+    starship
+    neovim
+    lazygit
+    ungoogled-chromium
+    swaynotificationcenter
+    dust
+    tldr
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -1,28 +1,27 @@
-
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
 
 let
-user = "anon";
+  user = "anon";
 
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-			./gaming.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./gaming.nix
+  ];
 
   # Bootloader.
-#  boot.loader.systemd-boot.enable = true;
+  #  boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.enable = false;
-	boot.loader.efi.canTouchEfiVariables = true;
-	boot.loader.grub.enable = true;
-	boot.loader.grub.devices = [ "nodev" ];
-	boot.loader.grub.efiSupport = true;
-	boot.loader.grub.useOSProber = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.devices = [ "nodev" ];
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.useOSProber = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -82,16 +81,24 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget tmux git
+    wget
+    tmux
+    git
+    gcc
     kanata
     nerd-fonts.hack
-    waybar wl-clipboard
-		tldr
-		home-manager
-		bluetuith
-		cargo rustup rustc
-		brightnessctl ddcutil swayosd
-		xwayland-satellite
+    waybar
+    wl-clipboard
+    tldr
+    home-manager
+    bluetuith
+    cargo
+    rustup
+    rustc
+    brightnessctl
+    ddcutil
+    swayosd
+    xwayland-satellite
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -101,25 +108,45 @@ in
   users.users.${user} = {
     isNormalUser = true;
     description = "anon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
 
     packages = with pkgs; [
-			#  thunderbird
-			alacritty neovim vim git stow fuzzel 
-			awww
-			keepassxc thunar
-			librewolf btop fastfetch
-			fnm starship ripgrep fzf lua go python3
-			sshfs fd opencode lazygit zoxide
-			dino ferdium 
-			# logseq 
+      #  thunderbird
+      alacritty
+      neovim
+      vim
+      git
+      stow
+      fuzzel
+      awww
+      keepassxc
+      thunar
+      librewolf
+      btop
+      fastfetch
+      fnm
+      starship
+      ripgrep
+      fzf
+      lua
+      go
+      python3
+      sshfs
+      fd
+      opencode
+      lazygit
+      zoxide
+      dino
+      ferdium
+      # logseq
     ];
   };
 
   programs.niri.enable = true;
-	programs.xwayland.enable = true;
-  
-
+  programs.xwayland.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -132,18 +159,18 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-	services.openssh = {
-			enable = true;
-			openFirewall = true;
-			settings = {
-				PasswordAuthentication = false;
-				KbdInteractiveAuthentication = false;
-				PermitRootLogin = "no";
-				AllowUsers = [ "anon" ];
-				MaxAuthTries = 3;
-				PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
-			};
-		};
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "anon" ];
+      MaxAuthTries = 3;
+      PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -159,7 +186,7 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
 
- services.kanata = {
+  services.kanata = {
     enable = true;
     keyboards = {
       internalKeyboard = {
@@ -171,31 +198,31 @@ in
         ];
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
-		(defsrc
-		  caps
-		  ralt
-		  h j k l
-		)
-		
-		(defalias
-		  ;; Caps Lock: Tap for Esc, Hold for LCtrl
-		  cap (tap-hold-press 200 200 esc lctl)
-		  
-		  ;; Right Alt: Switches to the "nav" layer while held
-		  nav (layer-toggle navigation)
-		)
-		
-		(deflayer base
-		  @cap
-		  @nav
-		  h j k l
-		)
-		
-		(deflayer navigation
-		  _          ;; Ignore caps in this layer
-		  _          ;; Ignore ralt in this layer
-		  left down up rght
-		)
+          		(defsrc
+          		  caps
+          		  ralt
+          		  h j k l
+          		)
+          		
+          		(defalias
+          		  ;; Caps Lock: Tap for Esc, Hold for LCtrl
+          		  cap (tap-hold-press 200 200 esc lctl)
+          		  
+          		  ;; Right Alt: Switches to the "nav" layer while held
+          		  nav (layer-toggle navigation)
+          		)
+          		
+          		(deflayer base
+          		  @cap
+          		  @nav
+          		  h j k l
+          		)
+          		
+          		(deflayer navigation
+          		  _          ;; Ignore caps in this layer
+          		  _          ;; Ignore ralt in this layer
+          		  left down up rght
+          		)
 
         '';
       };
