@@ -406,13 +406,16 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
+    Alt+Shift+Space hotkey-overlay-title="SSH: connect to host" { spawn-sh "~/.config/niri/scripts/ssh-fuzzel.sh"; }
+
     Mod+Shift+S hotkey-overlay-title="Suspend" { spawn "bash" "-c" "swaylock --daemonize && systemctl suspend"; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+Backspace hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
 
     Alt+Space hotkey-overlay-title="switch window" { spawn-sh "~/.config/niri/scripts/switch-window.sh"; }
-    Alt+Backspace hotkey-overlay-title="Zoxide: open directory" { spawn-sh "~/.config/niri/scripts/zoxide-fuzzel.sh"; }
+    Mod+Shift+Return hotkey-overlay-title="Zoxide: open directory" { spawn-sh "~/.config/niri/scripts/zoxide-fuzzel.sh"; }
+    Mod+X hotkey-overlay-title="System Actions" { spawn-sh "~/.config/niri/scripts/power-fuzzel.sh"; }
 
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
     Mod+O hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
