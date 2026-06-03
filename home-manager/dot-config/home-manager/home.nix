@@ -23,6 +23,13 @@
     ];
   };
 
+  programs.starship.enable = true;
+  programs.zoxide.enable = true;
+  programs.lazygit.enable = true;
+  programs.fuzzel.enable = true;
+  programs.btop.enable = true;
+  programs.fzf.enable = true;
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -32,32 +39,42 @@
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = with pkgs; [
+    # web
+    ungoogled-chromium
+    librewolf
+    dino
+    ferdium
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # Dev tools
+    rustup
+    fnm
+    go
+    lua
+    python3
+    ripgrep
+    fd
+    opencode
+    stow
+    neovim
+    alacritty
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    # System utilities
+    waybar
+    wl-clipboard
+    bluetuith
+    swaynotificationcenter
+    fastfetch
+    sshfs
+
+    # Files & productivity
     ranger
     man
-    zoxide
-    starship
-    neovim
-    lazygit
-    ungoogled-chromium
-    swaynotificationcenter
     dust
-    tldr
+    keepassxc
+    thunar
+    awww
+    prettierd
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

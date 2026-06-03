@@ -83,23 +83,16 @@ in
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     tmux
-    git
     gcc
-    kanata
-    nerd-fonts.hack
-    waybar
-    wl-clipboard
-    tldr
     home-manager
-    bluetuith
-    cargo
-    rustup
-    rustc
     brightnessctl
     ddcutil
     swayosd
     xwayland-satellite
+    tldr
   ];
+
+  fonts.packages = with pkgs; [ nerd-fonts.hack ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -111,37 +104,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
-    ];
-
-    packages = with pkgs; [
-      #  thunderbird
-      alacritty
-      neovim
-      vim
-      git
-      stow
-      fuzzel
-      awww
-      keepassxc
-      thunar
-      librewolf
-      btop
-      fastfetch
-      fnm
-      starship
-      ripgrep
-      fzf
-      lua
-      go
-      python3
-      sshfs
-      fd
-      opencode
-      lazygit
-      zoxide
-      dino
-      ferdium
-      # logseq
+      "input"
     ];
   };
 
