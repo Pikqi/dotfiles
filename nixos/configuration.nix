@@ -37,6 +37,8 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  security.polkit.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Belgrade";
 

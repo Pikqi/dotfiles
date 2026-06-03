@@ -85,6 +85,12 @@
     thunar
     awww
     prettierd
+
+    kdePackages.dolphin
+    kdePackages.qtsvg
+    kdePackages.kio
+    kdePackages.kio-fuse # to mount remote filesystems via FUSE
+    kdePackages.kio-extras # extra protocols support (sftp, fish and more)
   ];
 
   programs.mangohud = {
