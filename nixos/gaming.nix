@@ -23,6 +23,12 @@
     gamescopeSession.enable = true;
   };
 
+  programs.mangohud = {
+    enable = true;
+    enableSessionWide = true;
+
+  };
+
   environment.systemPackages = with pkgs; [
     heroic
     lutris
