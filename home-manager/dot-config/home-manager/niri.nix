@@ -40,6 +40,34 @@ in
     };
   };
 
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        font = "Hack Nerd Font:size=14";
+        icon-theme = "Papirus-Dark";
+        lines = 20;
+        width = 50;
+        prompt = "\"❯ \"";
+        line-height = 24;
+        padding = 8;
+      };
+      colors = {
+        background = "1d2021ff";
+        foreground = "ebdbb2ff";
+        match = "fe8019ff";
+        selection-background = "504945ee";
+        selection-foreground = "fbf1c7ff";
+        selection-match = "fe8019ff";
+        border = "d79921ff";
+      };
+      border = {
+        width = 2;
+        radius = 8;
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     waybar
     swaynotificationcenter

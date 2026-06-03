@@ -415,6 +415,7 @@ binds {
 
     Alt+Space hotkey-overlay-title="switch window" { spawn-sh "~/.config/niri/scripts/switch-window.sh"; }
     Mod+Shift+Return hotkey-overlay-title="Zoxide: open directory" { spawn-sh "~/.config/niri/scripts/zoxide-fuzzel.sh"; }
+    Alt+T hotkey-overlay-title="Tmux: attach session" { spawn-sh "~/.config/niri/scripts/tmux-fuzzel.sh"; }
     Mod+X hotkey-overlay-title="System Actions" { spawn-sh "~/.config/niri/scripts/power-fuzzel.sh"; }
 
     Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
