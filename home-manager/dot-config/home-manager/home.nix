@@ -6,8 +6,8 @@
     ./niri.nix
   ];
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  nixpkgs.config.allowUnfree = true;
+
   home.username = "anon";
   home.homeDirectory = "/home/anon";
 
@@ -76,6 +76,10 @@
     bluetuith
     fastfetch
     sshfs
+    unzip
+    zip
+    p7zip
+    unrar
 
     # Files & productivity
     ranger
