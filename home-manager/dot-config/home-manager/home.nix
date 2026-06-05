@@ -4,6 +4,8 @@
   imports = [
     ./syncthing.nix
     ./niri.nix
+    ./develop.nix
+    ./mime.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -89,6 +91,11 @@
     thunar
     awww
     prettierd
+
+    # Media
+    zathura
+    imv
+    mpv
 
     kdePackages.dolphin
     kdePackages.qtsvg
