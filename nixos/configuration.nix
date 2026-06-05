@@ -84,6 +84,8 @@ in
     #media-session.enable = true;
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -132,6 +134,12 @@ in
   # };
 
   # List services that you want to enable:
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+    extraUpFlags = [ "--accept-routes" ];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh = {
