@@ -84,6 +84,8 @@ in
     #media-session.enable = true;
   };
 
+  environment.pathsToLink = [ "/share" "/etc/xdg" ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Allow unfree packages
@@ -119,7 +121,14 @@ in
       "networkmanager"
       "wheel"
       "input"
+      "docker"
     ];
+  };
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    dockerSocket.enable = true;
   };
 
   programs.niri.enable = true;

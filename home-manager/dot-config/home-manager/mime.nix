@@ -25,6 +25,13 @@ let
   mediaPlayer = "mpv.desktop";
 in
 {
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "Alacritty.desktop" ];
+    };
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
@@ -84,4 +91,3 @@ in
     };
   };
 }
-
