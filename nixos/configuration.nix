@@ -27,6 +27,9 @@ in
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # todo
+  # boot.binfmt.appimage = true;
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -84,9 +87,10 @@ in
     #media-session.enable = true;
   };
 
-  environment.pathsToLink = [ "/share" "/etc/xdg" ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -106,6 +110,7 @@ in
     xwayland-satellite
     tldr
     gnumake
+    appimage-run
   ];
 
   fonts.packages = with pkgs; [ nerd-fonts.hack ];
@@ -125,11 +130,7 @@ in
     ];
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    dockerSocket.enable = true;
-  };
+  virtualisation.docker.enable = true;
 
   programs.niri.enable = true;
   programs.xwayland.enable = true;
@@ -143,6 +144,8 @@ in
   # };
 
   # List services that you want to enable:
+
+  services.flatpak.enable = true;
 
   services.tailscale = {
     enable = true;

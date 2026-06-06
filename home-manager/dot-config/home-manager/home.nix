@@ -6,6 +6,7 @@
     ./niri.nix
     ./develop.nix
     ./mime.nix
+    ./flatpak.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
