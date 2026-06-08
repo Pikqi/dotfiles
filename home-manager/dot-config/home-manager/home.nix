@@ -7,6 +7,7 @@
     ./develop.nix
     ./mime.nix
     ./flatpak.nix
+    ./gaming.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -141,6 +142,35 @@
   #
   #  /etc/profiles/per-user/anon/etc/profile.d/hm-session-vars.sh
   #
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
+    style = {
+      name = "breeze";
+      package = pkgs.kdePackages.breeze;
+    };
+  };
+
   home.sessionVariables = {
     # EDITOR = "emacs";
   };

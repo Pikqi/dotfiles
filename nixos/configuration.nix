@@ -111,6 +111,7 @@ in
     tldr
     gnumake
     appimage-run
+    libnotify
   ];
 
   fonts.packages = with pkgs; [ nerd-fonts.hack ];
@@ -134,6 +135,14 @@ in
 
   programs.niri.enable = true;
   programs.xwayland.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
