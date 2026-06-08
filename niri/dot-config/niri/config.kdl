@@ -108,7 +108,7 @@ output "eDP-1" {
 
     mode "1920x1080@60.031"
 
-    scale 1
+    scale 1.5
 
     transform "normal"
 }
@@ -445,6 +445,9 @@ binds {
     XF86MonBrightnessup     allow-when-locked=true { spawn-sh "swayosd-client --brightness +5; ddcutil setvcp 10 + 5"; }
     XF86MonBrightnessdown     allow-when-locked=true { spawn-sh "swayosd-client --brightness -5; ddcutil setvcp 10 - 5"; }
 
+    Mod+F1 allow-when-locked=true repeat=true cooldown-ms=250 { spawn-sh "~/.config/niri/scripts/tdp.sh down"; }
+    Mod+F2 allow-when-locked=true repeat=true cooldown-ms=250 { spawn-sh "~/.config/niri/scripts/tdp.sh up"; }
+    Mod+F3 { spawn-sh "~/.config/niri/scripts/tdp.sh toggle"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
