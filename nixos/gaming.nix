@@ -22,12 +22,4 @@
     enable = true;
     gamescopeSession.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    heroic
-    lutris
-    protonup-qt
-    retroarch-free
-  ];
-
 }
