@@ -1,6 +1,7 @@
 return {
 	{
 		"frankroeder/parrot.nvim",
+		enabled = false,
 		dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim' },
 		-- optionally include "folke/noice.nvim" or "rcarriga/nvim-notify" for beautiful notifications
 		config = function()

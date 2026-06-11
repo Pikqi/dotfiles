@@ -3,8 +3,20 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		opts = {},
 		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
+			{ "mason-org/mason.nvim", opts = {
+			ensure_installed = {
+			 	"prettierd",
+				"nixfmt",
+			},
+
+			} },
 			"neovim/nvim-lspconfig",
+		},
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "mason-org/mason.nvim" },
+		opts = {
 		},
 	},
 	{

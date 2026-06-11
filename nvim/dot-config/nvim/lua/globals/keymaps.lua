@@ -36,7 +36,7 @@ keymap("n", "C", '"_C', {})
 keymap("v", "x", '"_x', {})
 keymap("v", "c", '"_c', {})
 -- commenting
-keymap("n", ",", ":CommentToggle<CR>", {})
+keymap("n", ",", "gcc", { desc = "Toggle comment" })
 
 -- Marks
 
@@ -85,7 +85,7 @@ keymap("v", "∆", ":m .+1<CR>==", {})
 
 -- Comment in visual mode
 
-keymap("v", ",", ":CommentToggle<CR>", {})
+keymap("v", ",", "gc", { desc = "Toggle comment" })
 -- Swap delete and cut in visual mode
 --keymap("v", "<leader>d", '""d', {})
 --keymap("v", "d", '"_d', {})
@@ -97,7 +97,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", {})
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", {})
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", {})
 
-keymap("x", ",", ":CommentToggle<CR>", {})
+keymap("x", ",", "gc", { desc = "Toggle comment" })
 
 -- Leader
 keymap("n", "<leader>w", ":w!<cr>", { desc = "Save" })

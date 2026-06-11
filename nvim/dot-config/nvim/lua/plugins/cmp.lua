@@ -16,7 +16,7 @@ return {
 			snippets = { preset = 'luasnip' },
 			completion = { documentation = { auto_show = true } },
 			sources = {
-				default = { 'lsp', 'path', 'snippets', 'parrot' },
+				default = { 'lsp', 'path', 'snippets'},
 				providers = {
 					parrot = {
 						module = "parrot.completion.blink",
