@@ -13,29 +13,32 @@
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
           		(defsrc
-          		  caps
-          		  ralt
-          		  h j k l
+          			caps
+          			ralt
+          			h j k l
+          			u d
           		)
-          		
+
           		(defalias
-          		  ;; Caps Lock: Tap for Esc, Hold for LCtrl
-          		  cap (tap-hold-press 200 200 esc lctl)
-          		  
-          		  ;; Right Alt: Switches to the "nav" layer while held
-          		  nav (layer-toggle navigation)
+          			;; Caps Lock: Tap for Esc, Hold for LCtrl
+          			cap (tap-hold-press 200 200 esc lctl)
+
+          			;; Right Alt: Switches to the "nav" layer while held
+          			nav (layer-toggle navigation)
           		)
-          		
+
           		(deflayer base
-          		  @cap
-          		  @nav
-          		  h j k l
+          			@cap
+          			@nav
+          			h j k l
+          			u d
           		)
-          		
+
           		(deflayer navigation
-          		  _          ;; Ignore caps in this layer
-          		  _          ;; Ignore ralt in this layer
-          		  left down up rght
+          			_          ;; Ignore caps in this layer
+          			_          ;; Ignore ralt in this layer
+          			left down up rght
+          			pgup pgdn
           		)
 
         '';
