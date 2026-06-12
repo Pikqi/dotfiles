@@ -20,6 +20,7 @@
 		"memory",
 		"temperature",
 		"disk",
+		"battery",
 		"custom/uptime",
 		"custom/updates",
 		"custom/notification",
