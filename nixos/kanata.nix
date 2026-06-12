@@ -1,5 +1,12 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  hardware,
+  ...
+}:
+{
+  hardware.uinput.enable = true;
+
   services.kanata = {
     enable = true;
     keyboards = {
@@ -44,5 +51,18 @@
         '';
       };
     };
+  };
+
+  systemd.services.kanata-internalKeyboard = {
+    after = [
+      "dev-input-platform-i8042-serio-0-event-kbd.device"
+      "dev-input-pci-0000:00:14.0-usb-0:3:1.0-event-kbd.device"
+    ];
+    wants = [
+      "dev-input-platform-i8042-serio-0-event-kbd.device"
+      "dev-input-pci-0000:00:14.0-usb-0:3:1.0-event-kbd.device"
+    ];
+    serviceConfig.Restart = "on-failure";
+    serviceConfig.RestartSec = "2s";
   };
 }
