@@ -23,6 +23,7 @@ in
       "eu.betterbird.Betterbird"
       "io.github.Qalculate"
       "io.github.v81d.Wattage"
+      "com.logseq.Logseq"
     ];
 
     update = {

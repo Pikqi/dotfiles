@@ -13,6 +13,7 @@
         "sync" = {
           path = "~/sync";
           devices = [
+            "480"
             "server"
             "pixel"
             "pc"
@@ -22,6 +23,7 @@
         "pass" = {
           path = "~/pass";
           devices = [
+            "480"
             "server"
             "pixel"
             "pc"
@@ -31,6 +33,7 @@
         "OPVault" = {
           path = "~/Documents/OPVault";
           devices = [
+            "480"
             "server"
             "pixel"
             "pc"
@@ -40,6 +43,9 @@
       };
 
       devices = {
+        "480" = {
+          id = "LJBEHDK-DQ4DWYM-DCM633H-MALOOVK-C7R7MQL-DUHR4L2-6SEUMJL-HK4HZA4";
+        };
         "server" = {
           id = "U6YAGGG-GU74BMW-JPK5WRF-DGCDK6R-PYNQQK7-T3T5DYL-NKP43YP-CMNXVAQ";
         };
