@@ -23,6 +23,7 @@
 		"battery",
 		"custom/uptime",
 		"custom/updates",
+		"custom/power-profile",
 		"custom/notification",
 		"tray"
 	],
@@ -50,6 +51,14 @@
 		"interval": 3600,
 		"on-click": "alacritty -e sudo pacman -Syu",
 		"signal": 8
+	},
+	"custom/power-profile": {
+		"format": "{}",
+		"exec": "~/.config/waybar/power-profile.sh",
+		"on-click": "~/.config/waybar/power-profile.sh --next",
+		"interval": 30,
+		"signal": 5,
+		"return-type": "json"
 	},
 	"custom/uptime": {
 		"format": "󰔟 {}",
@@ -184,7 +193,7 @@
 			]
 		},
 		"on-click": "pavucontrol",
-		"on-click-middle": "helvum",
+		"on-click-middle": "crosspipe",
 		"on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
 		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"

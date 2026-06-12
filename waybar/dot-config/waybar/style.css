@@ -101,6 +101,8 @@
 
 @define-color privacy-color @red;
 
+@define-color power-profile-color @foreground;
+
 * {
     /* Base styling for all modules */
     border: none;
@@ -121,7 +123,7 @@ window#waybar {
 #mode, #mpd, #custom-weather, #custom-playerctl, #clock, #cpu,
 #memory, #temperature, #battery, #network, #pulseaudio,
 #backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
-#idle_inhibitor, #tray, #language, #window, #privacy {
+#idle_inhibitor, #tray, #language, #window, #privacy, #custom-power-profile {
     padding: 0 10px;
     margin: 0 2px;
     border-bottom: 2px solid transparent;
@@ -326,4 +328,24 @@ window#waybar {
 	border-bottom-color: @privacy-color;
 	color: @privacy-color;
 
+}
+
+#custom-power-profile {
+	color: @power-profile-color;
+	border-bottom-color: @power-profile-color;
+}
+
+#custom-power-profile.performance {
+	color: @orange;
+	border-bottom-color: @orange;
+}
+
+#custom-power-profile.balanced {
+	color: @green;
+	border-bottom-color: @green;
+}
+
+#custom-power-profile.power-saver {
+	color: @cyan;
+	border-bottom-color: @cyan;
 }

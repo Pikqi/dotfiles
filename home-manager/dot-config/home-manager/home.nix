@@ -84,6 +84,7 @@
     zip
     p7zip
     unrar
+    jq
 
     # Files & productivity
     ranger
@@ -98,6 +99,8 @@
     zathura
     imv
     mpv
+    pavucontrol
+    crosspipe
 
     kdePackages.dolphin
     kdePackages.qtsvg
