@@ -63,7 +63,6 @@
 
     # Dev tools
     rustup
-    fnm
     go
     lua
     python3

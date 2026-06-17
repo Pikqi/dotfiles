@@ -40,11 +40,6 @@ if [ -f ~/.bash_completions.bash ]; then
     . ~/.bash_completions.bash
 fi
 
-# fnm
-export PATH=$HOME/.fnm:$PATH
-# eval "`fnm env`"
-eval "$(fnm env --use-on-cd)"
-
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 
