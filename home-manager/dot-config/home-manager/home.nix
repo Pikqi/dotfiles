@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 
+let
+  stable =
+    import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-26.05.tar.gz")
+      {
+        config = {
+          allowUnfree = true;
+        };
+      };
+in
+
 {
   imports = [
     ./syncthing.nix
@@ -54,59 +64,69 @@
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    # web
-    ungoogled-chromium
-    librewolf
-    dino
-    ferdium
+  home.packages =
+    with pkgs;
+    [
+      # web
+      ungoogled-chromium
+      dino
+      ferdium
 
-    # Dev tools
-    rustup
-    go
-    lua
-    python3
-    ripgrep
-    fd
-    opencode
-    stow
-    neovim
-    alacritty
+      # Dev tools
+      rustup
+      go
+      lua
+      python3
+      ripgrep
+      fd
+      opencode
+      stow
+      neovim
+      alacritty
 
-    # System utilities
-    wl-clipboard
-    wtype
-    bluetuith
-    fastfetch
-    sshfs
-    unzip
-    zip
-    p7zip
-    unrar
-    jq
+      # System utilities
+      wl-clipboard
+      wtype
+      bluetuith
+      fastfetch
+      sshfs
+      unzip
+      zip
+      p7zip
+      unrar
+      jq
 
-    # Files & productivity
-    ranger
-    man
-    dust
-    keepassxc
-    thunar
-    awww
-    prettierd
+      # Files & productivity
+      ranger
+      man
+      dust
+      keepassxc
+      thunar
+      awww
+      prettierd
+      libreoffice
 
-    # Media
-    zathura
-    imv
-    mpv
-    pavucontrol
-    crosspipe
+      # Media
+      zathura
+      imv
+      mpv
+      pavucontrol
+      crosspipe
 
-    kdePackages.dolphin
-    kdePackages.qtsvg
-    kdePackages.kio
-    kdePackages.kio-fuse # to mount remote filesystems via FUSE
-    kdePackages.kio-extras # extra protocols support (sftp, fish and more)
-  ];
+      kdePackages.dolphin
+
+      qgroundcontrol
+      nodejs
+
+      # Stable-pinned
+    ]
+    ++ [
+      stable.librewolf
+      kdePackages.qtsvg
+      kdePackages.kio
+      kdePackages.kio-fuse # to mount remote filesystems via FUSE
+      kdePackages.kio-extras # extra protocols support (sftp, fish and more)
+    ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

@@ -128,6 +128,7 @@ in
       "wheel"
       "input"
       "docker"
+      "dialout"
     ];
   };
 
