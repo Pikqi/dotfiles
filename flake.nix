@@ -68,8 +68,50 @@
         "480"
         "pc"
       ];
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      nvimConfig = pkgs.stdenvNoCC.mkDerivation {
+        name = "nvim-config";
+        src = ./nvim/dot-config/nvim;
+        dontBuild = true;
+        installPhase = ''
+          mkdir -p $out
+          cp -r . $out/
+          chmod -R u+w $out
+        '';
+      };
+
+      nvimPackage = pkgs.writeShellApplication {
+        name = "nvim";
+        runtimeInputs = with pkgs; [
+          neovim
+          git
+          ripgrep
+          fd
+          gnumake
+          gcc
+          unzip
+        ];
+        text = ''
+          tmpdir_root=/tmp/nix-nvim-$USER
+          mkdir -p "$tmpdir_root"
+          export XDG_CONFIG_HOME="$tmpdir_root/config"
+          export XDG_DATA_HOME="$tmpdir_root/data"
+          export XDG_STATE_HOME="$tmpdir_root/state"
+          export XDG_CACHE_HOME="$tmpdir_root/cache"
+          mkdir -p "$XDG_CONFIG_HOME/nvim"
+          cp -r ${nvimConfig}/. "$XDG_CONFIG_HOME/nvim/"
+          chmod -R u+w "$XDG_CONFIG_HOME/nvim"
+          exec nvim "$@"
+        '';
+      };
     in
     {
+      packages.x86_64-linux.nvim = nvimPackage;
       nixosConfigurations = lib.genAttrs hostnames mkNixos;
       homeConfigurations = lib.genAttrs hostnames mkHome;
     };
