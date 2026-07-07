@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  hardware,
-  ...
-}:
+{ pkgs, ... }:
 {
   hardware.uinput.enable = true;
 

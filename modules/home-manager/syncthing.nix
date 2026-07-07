@@ -3,6 +3,9 @@
 {
   services.syncthing = {
     enable = true;
+    tray = {
+      enable = true;
+    };
     settings = {
       gui = {
         # user = "anon";

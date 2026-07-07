@@ -1,15 +1,9 @@
-{ config, pkgs, ... }:
-
-let
-  stable =
-    import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-26.05.tar.gz")
-      {
-        config = {
-          allowUnfree = true;
-        };
-      };
-in
-
+{
+  config,
+  pkgs,
+  stable,
+  ...
+}:
 {
   imports = [
     ./syncthing.nix
@@ -19,11 +13,6 @@ in
     ./flatpak.nix
     ./gaming.nix
   ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  home.username = "anon";
-  home.homeDirectory = "/home/anon";
 
   programs.git = {
     enable = true;
@@ -55,14 +44,7 @@ in
     };
   };
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.11"; # Please read the comment before changing.
+  home.stateVersion = "25.11";
 
   home.packages =
     with pkgs;
@@ -95,6 +77,7 @@ in
       p7zip
       unrar
       jq
+      file
 
       # Files & productivity
       ranger
@@ -118,48 +101,15 @@ in
 
       qgroundcontrol
       nodejs
-
-      # Stable-pinned
     ]
     ++ [
       stable.librewolf
       kdePackages.qtsvg
       kdePackages.kio
-      kdePackages.kio-fuse # to mount remote filesystems via FUSE
-      kdePackages.kio-extras # extra protocols support (sftp, fish and more)
+      kdePackages.kio-fuse
+      kdePackages.kio-extras
     ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/anon/etc/profile.d/hm-session-vars.sh
-  #
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -178,6 +128,7 @@ in
     };
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.theme = config.gtk.theme;
   };
 
   qt = {
@@ -193,6 +144,5 @@ in
     # EDITOR = "emacs";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

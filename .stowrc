@@ -2,3 +2,7 @@
 --dotfiles
 --verbose=1
 --ignore=nixos
+--ignore=hosts
+--ignore=modules
+--ignore=flake.nix
+--ignore=flake.lock

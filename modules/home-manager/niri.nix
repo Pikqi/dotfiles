@@ -74,6 +74,6 @@ in
   ];
 
   home.file = {
-    "/home/anon/.config/swaylock/lockscreen.png".source = /home/anon/dotfiles/lockscreen.png;
+    "${config.home.homeDirectory}/.config/swaylock/lockscreen.png".source = ../../lockscreen.png;
   };
 }
