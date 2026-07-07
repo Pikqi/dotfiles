@@ -112,6 +112,7 @@ in
       mpv
       pavucontrol
       crosspipe
+      feishin
 
       kdePackages.dolphin
 

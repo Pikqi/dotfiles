@@ -12,10 +12,8 @@
     keyboards = {
       internalKeyboard = {
         devices = [
-          # Replace the paths below with the appropriate device paths for your setup.
-          # Use `ls /dev/input/by-path/` to find your keyboard devices.
           "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-          "/dev/input/by-path/pci-0000:00:14.0-usb-0:3:1.0-event-kbd"
+          "/dev/input/by-id/usb-_Mouse_for_Windows-if01-event-kbd"
         ];
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
@@ -55,12 +53,12 @@
 
   systemd.services.kanata-internalKeyboard = {
     after = [
-      "dev-input-platform-i8042-serio-0-event-kbd.device"
-      "dev-input-pci-0000:00:14.0-usb-0:3:1.0-event-kbd.device"
+      "dev-input-by\\x2dpath-platform\\x2di8042\\x2dserio\\x2d0\\x2devent\\x2dkbd.device"
+      "dev-input-by\\x2did-usb\\x2d_Mouse_for_Windows\\x2dif01\\x2devent\\x2dkbd.device"
     ];
     wants = [
-      "dev-input-platform-i8042-serio-0-event-kbd.device"
-      "dev-input-pci-0000:00:14.0-usb-0:3:1.0-event-kbd.device"
+      "dev-input-by\\x2dpath-platform\\x2di8042\\x2dserio\\x2d0\\x2devent\\x2dkbd.device"
+      "dev-input-by\\x2did-usb\\x2d_Mouse_for_Windows\\x2dif01\\x2devent\\x2dkbd.device"
     ];
     serviceConfig.Restart = "on-failure";
     serviceConfig.RestartSec = "2s";
