@@ -109,7 +109,7 @@ output "eDP-1" {
 
     mode "1920x1080@60.031"
 
-    scale 1.5
+    scale 1.0
 
     transform "normal"
 }
@@ -684,5 +684,6 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
-
 }
+
+include optional=true "override.kdl"
