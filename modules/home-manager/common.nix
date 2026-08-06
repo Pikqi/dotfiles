@@ -2,6 +2,7 @@
   config,
   pkgs,
   stable,
+  lib,
   ...
 }:
 {
@@ -27,6 +28,11 @@
         path = "~/.gitconfig-decentrala";
       }
     ];
+  };
+
+  programs.ghostty = {
+    enable = true;
+    enableBashIntegration = true;
   };
 
   programs.starship.enable = true;
@@ -80,7 +86,7 @@
       file
 
       # Files & productivity
-      ranger
+      yazi
       man
       dust
       keepassxc
@@ -90,6 +96,7 @@
       libreoffice
 
       # Media
+      kdePackages.okular
       zathura
       imv
       mpv

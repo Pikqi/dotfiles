@@ -20,7 +20,7 @@ let
   browser = "librewolf.desktop";
   fileManager = "org.kde.dolphin.desktop";
   textEditor = "nvim.desktop";
-  pdfViewer = "org.pwmt.zathura.desktop";
+  pdfViewer = "org.kde.okular.desktop";
   imageView = "imv.desktop";
   mediaPlayer = "mpv.desktop";
 in
@@ -28,7 +28,7 @@ in
   xdg.terminal-exec = {
     enable = true;
     settings = {
-      default = [ "Alacritty.desktop" ];
+      default = [ "com.mitchellh.desktop" ];
     };
   };
 

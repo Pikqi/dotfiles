@@ -32,7 +32,7 @@ alias lg="lazygit"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles' 
 alias lazyconfig='lazygit --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles' 
 
-alias r="ranger"
+alias r="yazi"
 alias cl="clear"
 alias bl="bluetuith"
 

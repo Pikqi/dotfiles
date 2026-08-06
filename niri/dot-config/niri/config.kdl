@@ -321,6 +321,11 @@ animations {
 
 
 window-rule {
+	match app-id="ghostty"
+	default-column-width { proportion 0.5;}
+}
+
+window-rule {
 	match app-id="Alacritty"
 	default-column-width { proportion 0.5;}
 }
@@ -399,7 +404,7 @@ binds {
 
     Mod+Shift+S hotkey-overlay-title="Suspend" { spawn "bash" "-c" "swaylock --daemonize && systemctl suspend"; }
 
-    Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty +new-window" { spawn "ghostty"; }
     Mod+Backspace hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
 
     Alt+Space hotkey-overlay-title="switch window" { spawn-sh "~/.config/niri/scripts/switch-window.sh"; }
@@ -407,12 +412,13 @@ binds {
     Alt+T hotkey-overlay-title="Tmux: attach session" { spawn-sh "~/.config/niri/scripts/tmux-fuzzel.sh"; }
     Mod+X hotkey-overlay-title="System Actions" { spawn-sh "~/.config/niri/scripts/power-fuzzel.sh"; }
 
-    Mod+P hotkey-overlay-title="Run an Application: librewolf" { spawn "librewolf"; }
-    Mod+O hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
+    Mod+P hotkey-overlay-title="Run an Application: librewolf default" { spawn-sh "librewolf -P default"; }
+    Mod+O hotkey-overlay-title="Run an Application: librewolf faks" { spawn-sh "librewolf -P faks"; }
+    Mod+I hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
     Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
     Mod+V hotkey-overlay-title="Clipboard history" { spawn-sh "~/.config/niri/scripts/cliphist-fuzzel.sh"; }
-    Mod+Shift+T hotkey-overlay-title="btop" { spawn-sh "alacritty -e btop"; }
-    Mod+M hotkey-overlay-title="open music tmux" { spawn-sh "alacritty -e ~/.config/scripts/tmux-music.sh"; }
+    Mod+Shift+T hotkey-overlay-title="btop" { spawn-sh "ghostty -e btop"; }
+    Mod+M hotkey-overlay-title="open music tmux" { spawn-sh "ghostty -e ~/.config/scripts/tmux-music.sh"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Shift+B { spawn-sh "pkill -USR1 waybar"; }
@@ -421,7 +427,7 @@ binds {
     Mod+Shift+N { spawn "notify-send" "Test Notification" "Odit et quas laborum. Voluptatem et labore iusto aliquid atque accusamus fugiat. Cumque nobis et sint possimus. Qui nesciunt explicabo assumenda laborum ducimus aspernatur. Facere ut saepe praesentium quia reiciendis iusto. Expedita consectetur iure officia id iste aut porro sed." "-i" "firefox"; }
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
-    // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
+    // Mod+T { spawn "bash" "-c" "notify-send hello && exec ghostty"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -505,8 +511,8 @@ binds {
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
+    // Mod+U              { focus-workspace-down; }
+    // Mod+I              { focus-workspace-up; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-column-to-workspace-down; }

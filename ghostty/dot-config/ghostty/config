@@ -1,0 +1,60 @@
+font-family = Hack Nerd Font
+font-size = 16
+
+confirm-close-surface = false
+working-directory = home
+
+background = #282828
+foreground = #ebdbb2
+bold-color = #fbf1c7
+
+palette = 0=#282828
+palette = 1=#cc241d
+palette = 2=#98971a
+palette = 3=#d79921
+palette = 4=#458588
+palette = 5=#b16286
+palette = 6=#689d6a
+palette = 7=#a89984
+
+palette = 8=#928374
+palette = 9=#fb4934
+palette = 10=#b8bb26
+palette = 11=#fabd2f
+palette = 12=#83a598
+palette = 13=#d3869b
+palette = 14=#8ec07c
+palette = 15=#ebdbb2
+
+palette = 66=#a89984
+palette = 72=#689d6a
+palette = 106=#98971a
+palette = 108=#8ec07c
+palette = 109=#83a598
+palette = 124=#cc241d
+palette = 132=#b16286
+palette = 142=#b8bb26
+palette = 166=#d65d0e
+palette = 167=#fb4934
+palette = 172=#d79921
+palette = 175=#d3869b
+palette = 208=#fe8019
+palette = 214=#fabd2f
+palette = 223=#ebdbb2
+palette = 229=#fbf1c7
+palette = 234=#1d2021
+palette = 235=#282828
+palette = 236=#32302f
+palette = 237=#3c3836
+palette = 239=#504945
+palette = 241=#665c54
+palette = 243=#7c6f64
+palette = 245=#928374
+palette = 246=#a89984
+palette = 248=#bdae93
+palette = 250=#d5c4a1
+
+cursor-color = cell-foreground
+cursor-text = cell-background
+selection-background = cell-foreground
+selection-foreground = cell-background
