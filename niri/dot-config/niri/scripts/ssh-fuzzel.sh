@@ -1,1 +1,1 @@
-host=$(grep "^Host " ~/.ssh/config | awk '{print $2}' | fuzzel --dmenu) && alacritty -e ssh "$host"
+host=$(grep "^Host " ~/.ssh/config | awk '{print $2}' | fuzzel --dmenu) && ghostty +new-window -e ssh "$host"

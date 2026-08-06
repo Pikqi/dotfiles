@@ -404,7 +404,7 @@ binds {
 
     Mod+Shift+S hotkey-overlay-title="Suspend" { spawn "bash" "-c" "swaylock --daemonize && systemctl suspend"; }
 
-    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty +new-window" { spawn "ghostty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn-sh "ghostty +new-window"; }
     Mod+Backspace hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
 
     Alt+Space hotkey-overlay-title="switch window" { spawn-sh "~/.config/niri/scripts/switch-window.sh"; }
@@ -417,8 +417,8 @@ binds {
     Mod+I hotkey-overlay-title="Run an Application: logseq" { spawn "logseq"; }
     Mod+Z hotkey-overlay-title="Run an Application: keepasxc" { spawn "/usr/bin/keepassxc"; }
     Mod+V hotkey-overlay-title="Clipboard history" { spawn-sh "~/.config/niri/scripts/cliphist-fuzzel.sh"; }
-    Mod+Shift+T hotkey-overlay-title="btop" { spawn-sh "ghostty -e btop"; }
-    Mod+M hotkey-overlay-title="open music tmux" { spawn-sh "ghostty -e ~/.config/scripts/tmux-music.sh"; }
+    Mod+Shift+T hotkey-overlay-title="btop" { spawn-sh "ghostty +new-window -e btop"; }
+    Mod+M hotkey-overlay-title="open music tmux" { spawn-sh "ghostty +new-window -e bash ~/.config/scripts/tmux-music.sh"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Shift+B { spawn-sh "pkill -USR1 waybar"; }
