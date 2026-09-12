@@ -71,6 +71,7 @@
       stow
       neovim
       alacritty
+      vscode-with-extensions
 
       # System utilities
       wl-clipboard
@@ -84,6 +85,10 @@
       unrar
       jq
       file
+      dig
+      iperf3
+      nmap
+      claude-code
 
       # Files & productivity
       yazi
